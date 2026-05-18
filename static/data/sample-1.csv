@@ -1,69 +1,118 @@
 Date,Description,Amount,Category,Account
-2026-01-05,WAITROSE SUPERMARKET,-84.20,Groceries,Current
-2026-01-07,NETFLIX SUBSCRIPTION,-17.99,Entertainment,Current
-2026-01-08,SALARY CREDIT,4200.00,Income,Current
-2026-01-09,OYSTER CARD TOP UP,-40.00,Transport,Current
-2026-01-11,PURE GYM MONTHLY,-34.99,Health,Current
-2026-01-12,PRET A MANGER,-8.40,Dining,Current
-2026-01-14,AMAZON PURCHASE,-62.30,Shopping,Current
-2026-01-15,ELECTRICITY BILL,-94.00,Utilities,Current
-2026-01-16,COTE RESTAURANT,-48.50,Dining,Current
-2026-01-18,COFFEE SHOP,-4.20,Dining,Current
-2026-01-19,MOBILE PHONE BILL,-35.00,Bills,Current
-2026-01-21,TESCO SUPERMARKET,-67.80,Groceries,Current
-2026-01-22,TRAIN TICKET,-28.50,Transport,Current
-2026-01-24,SPOTIFY,-9.99,Entertainment,Current
-2026-01-26,SAINSBURYS,-54.10,Groceries,Current
-2026-01-28,GAS BILL,-78.00,Utilities,Current
-2026-01-29,CINEMA TICKETS,-24.00,Entertainment,Current
-2026-01-30,TRANSFER IN - DIVIDENDS,320.00,Investments,Savings
-2026-02-05,WAITROSE SUPERMARKET,-91.40,Groceries,Current
-2026-02-06,SALARY CREDIT,4200.00,Income,Current
-2026-02-07,SKY BROADBAND,-38.00,Bills,Current
-2026-02-09,PRET A MANGER,-7.80,Dining,Current
-2026-02-11,AMAZON PRIME,-8.99,Entertainment,Current
-2026-02-12,COUNCIL TAX,-142.00,Bills,Current
-2026-02-13,FUEL - BP GARAGE,-68.40,Transport,Current
-2026-02-15,BOOTS PHARMACY,-22.60,Health,Current
-2026-02-17,NANDOS,-32.50,Dining,Current
-2026-02-18,MARKS AND SPENCER,-88.20,Shopping,Current
-2026-02-20,COFFEE SHOP,-5.10,Dining,Current
-2026-02-22,SAINSBURYS,-61.30,Groceries,Current
-2026-02-24,TRAIN TICKET,-42.00,Transport,Current
-2026-02-26,TRADING GAINS,850.00,Investments,Savings
-2026-02-27,WATER BILL,-44.00,Utilities,Current
-2026-03-04,WAITROSE SUPERMARKET,-78.90,Groceries,Current
-2026-03-06,SALARY CREDIT,4200.00,Income,Current
-2026-03-08,UBER,-14.20,Transport,Current
-2026-03-09,RESTAURANT MEAL,-56.00,Dining,Current
-2026-03-11,AMAZON PURCHASE,-34.99,Shopping,Current
-2026-03-13,ELECTRICITY BILL,-88.00,Utilities,Current
-2026-03-15,COFFEE SHOP,-4.60,Dining,Current
-2026-03-17,TESCO SUPERMARKET,-72.40,Groceries,Current
-2026-03-19,CLOTHING STORE,-124.00,Shopping,Current
-2026-03-21,GYM SUPPLEMENT,-45.00,Health,Current
-2026-03-23,TRAIN TICKET,-38.00,Transport,Current
-2026-03-25,CINEMA,-18.00,Entertainment,Current
-2026-03-27,TRADING GAINS,1240.00,Investments,Savings
-2026-03-29,MOBILE PHONE,-35.00,Bills,Current
-2026-04-04,WAITROSE SUPERMARKET,-93.10,Groceries,Current
-2026-04-07,SALARY CREDIT,4200.00,Income,Current
-2026-04-08,PRET A MANGER,-9.20,Dining,Current
-2026-04-10,SPOTIFY,-9.99,Entertainment,Current
-2026-04-11,COUNCIL TAX,-142.00,Bills,Current
-2026-04-13,RESTAURANT,-72.50,Dining,Current
-2026-04-14,AMAZON PURCHASE,-28.00,Shopping,Current
-2026-04-16,ELECTRICITY BILL,-102.00,Utilities,Current
-2026-04-17,FUEL - SHELL,-71.20,Transport,Current
-2026-04-19,COFFEE SHOP,-4.80,Dining,Current
-2026-04-21,SAINSBURYS,-58.70,Groceries,Current
-2026-04-23,TRADING GAINS,2100.00,Investments,Savings
-2026-04-25,GAS BILL,-82.00,Utilities,Current
-2026-04-27,TRAIN TICKET,-31.50,Transport,Current
-2026-04-29,NETFLIX SUBSCRIPTION,-17.99,Entertainment,Current
-2026-05-03,WAITROSE SUPERMARKET,-88.40,Groceries,Current
-2026-05-06,SALARY CREDIT,4200.00,Income,Current
-2026-05-08,COFFEE SHOP,-5.20,Dining,Current
-2026-05-10,AMAZON PURCHASE,-44.99,Shopping,Current
-2026-05-12,MOBILE PHONE BILL,-35.00,Bills,Current
-2026-05-14,TRADING GAINS,1800.00,Investments,Savings
+2025-01-03,TESCO SUPERSTORE,-67.40,Groceries,Barclays Current
+2025-01-04,STARBUCKS KINGS CROSS,-5.60,Dining,Barclays Current
+2025-01-06,TFL TRAVEL CHARGE,-41.60,Transport,Barclays Current
+2025-01-08,SALARY - NEXUS DIGITAL LTD,3400.00,Income,Barclays Current
+2025-01-09,NETFLIX.COM,-17.99,Subscriptions,Barclays Current
+2025-01-10,SPOTIFY AB,-11.99,Subscriptions,Barclays Current
+2025-01-11,DELIVEROO,-28.40,Dining,Barclays Current
+2025-01-12,PURE GYM LTD,-26.99,Health,Barclays Current
+2025-01-13,AMAZON MARKETPLACE,-34.99,Shopping,Barclays Current
+2025-01-14,BRITISH GAS,-78.50,Utilities,Barclays Current
+2025-01-15,THREE MOBILE,-18.00,Bills,Barclays Current
+2025-01-16,PRET A MANGER,-6.90,Dining,Barclays Current
+2025-01-17,SAINSBURYS SUPERSTORE,-54.20,Groceries,Barclays Current
+2025-01-18,UBER TRIP,-12.40,Transport,Barclays Current
+2025-01-19,APPLE MUSIC,-10.99,Subscriptions,Barclays Current
+2025-01-20,PIZZA EXPRESS,-41.80,Dining,Barclays Current
+2025-01-21,CURZON CINEMA SOHO,-14.50,Entertainment,Barclays Current
+2025-01-22,LIDL GB,-38.60,Groceries,Barclays Current
+2025-01-24,COUNCIL TAX DIRECT DEBIT,-142.00,Bills,Barclays Current
+2025-01-25,BOOTS PHARMACY,-19.40,Health,Barclays Current
+2025-01-27,TFL TRAVEL CHARGE,-38.80,Transport,Barclays Current
+2025-01-28,DISHOOM KINGS CROSS,-56.20,Dining,Barclays Current
+2025-01-29,AMAZON PRIME,-8.99,Subscriptions,Barclays Current
+2025-01-31,SKY BROADBAND,-38.00,Bills,Barclays Current
+2025-02-03,WAITROSE 404,-88.60,Groceries,Barclays Current
+2025-02-05,PRET A MANGER,-7.40,Dining,Barclays Current
+2025-02-06,COSTA COFFEE,-4.85,Dining,Barclays Current
+2025-02-07,SALARY - NEXUS DIGITAL LTD,3400.00,Income,Barclays Current
+2025-02-08,NETFLIX.COM,-17.99,Subscriptions,Barclays Current
+2025-02-09,SPOTIFY AB,-11.99,Subscriptions,Barclays Current
+2025-02-10,UBER EATS,-32.60,Dining,Barclays Current
+2025-02-11,PURE GYM LTD,-26.99,Health,Barclays Current
+2025-02-12,ZARA UK,-89.00,Shopping,Barclays Current
+2025-02-13,AMAZON PRIME,-8.99,Subscriptions,Barclays Current
+2025-02-14,SKETCH LONDON,-124.00,Dining,Barclays Current
+2025-02-15,THREE MOBILE,-18.00,Bills,Barclays Current
+2025-02-16,ALDI STORES,-42.30,Groceries,Barclays Current
+2025-02-17,TFL TRAVEL CHARGE,-35.20,Transport,Barclays Current
+2025-02-18,APPLE MUSIC,-10.99,Subscriptions,Barclays Current
+2025-02-19,BRITISH GAS,-78.50,Utilities,Barclays Current
+2025-02-20,COUNCIL TAX DIRECT DEBIT,-142.00,Bills,Barclays Current
+2025-02-21,MARKS AND SPENCER,-62.40,Shopping,Barclays Current
+2025-02-22,THE WETHERSPOON,-18.60,Dining,Barclays Current
+2025-02-24,CURZON CINEMA MAYFAIR,-14.50,Entertainment,Barclays Current
+2025-02-26,SAINSBURYS SUPERSTORE,-71.80,Groceries,Barclays Current
+2025-02-28,SKY BROADBAND,-38.00,Bills,Barclays Current
+2025-03-01,TFL TRAVEL CHARGE,-42.00,Transport,Barclays Current
+2025-03-03,LIDL GB,-36.20,Groceries,Barclays Current
+2025-03-05,STARBUCKS,-5.80,Dining,Barclays Current
+2025-03-07,SALARY - NEXUS DIGITAL LTD,3400.00,Income,Barclays Current
+2025-03-08,NETFLIX.COM,-17.99,Subscriptions,Barclays Current
+2025-03-09,SPOTIFY AB,-11.99,Subscriptions,Barclays Current
+2025-03-10,DELIVEROO,-24.80,Dining,Barclays Current
+2025-03-11,PURE GYM LTD,-26.99,Health,Barclays Current
+2025-03-12,H&M,-54.00,Shopping,Barclays Current
+2025-03-13,AMAZON MARKETPLACE,-68.99,Shopping,Barclays Current
+2025-03-14,BRITISH GAS,-72.00,Utilities,Barclays Current
+2025-03-15,THREE MOBILE,-18.00,Bills,Barclays Current
+2025-03-17,WAGAMAMA,-38.50,Dining,Barclays Current
+2025-03-18,APPLE MUSIC,-10.99,Subscriptions,Barclays Current
+2025-03-19,TESCO METRO,-79.40,Groceries,Barclays Current
+2025-03-20,COUNCIL TAX DIRECT DEBIT,-142.00,Bills,Barclays Current
+2025-03-21,UBER TRIP,-14.80,Transport,Barclays Current
+2025-03-22,SKY BROADBAND,-38.00,Bills,Barclays Current
+2025-03-24,TRAINLINE,-42.00,Transport,Barclays Current
+2025-03-25,ASOS,-112.00,Shopping,Barclays Current
+2025-03-27,SAINSBURYS SUPERSTORE,-66.40,Groceries,Barclays Current
+2025-03-28,AMAZON PRIME,-8.99,Subscriptions,Barclays Current
+2025-03-29,NANDOS,-34.60,Dining,Barclays Current
+2025-04-01,TFL TRAVEL CHARGE,-38.40,Transport,Barclays Current
+2025-04-02,WAITROSE 404,-94.20,Groceries,Barclays Current
+2025-04-04,PRET A MANGER,-7.20,Dining,Barclays Current
+2025-04-07,SALARY - NEXUS DIGITAL LTD,3400.00,Income,Barclays Current
+2025-04-08,NETFLIX.COM,-17.99,Subscriptions,Barclays Current
+2025-04-09,SPOTIFY AB,-11.99,Subscriptions,Barclays Current
+2025-04-10,PURE GYM LTD,-26.99,Health,Barclays Current
+2025-04-11,BRITISH GAS,-64.00,Utilities,Barclays Current
+2025-04-12,THREE MOBILE,-18.00,Bills,Barclays Current
+2025-04-13,APPLE MUSIC,-10.99,Subscriptions,Barclays Current
+2025-04-14,AMAZON PRIME,-8.99,Subscriptions,Barclays Current
+2025-04-16,COUNCIL TAX DIRECT DEBIT,-142.00,Bills,Barclays Current
+2025-04-17,UBER EATS,-22.40,Dining,Barclays Current
+2025-04-18,SKY BROADBAND,-38.00,Bills,Barclays Current
+2025-04-19,LIDL GB,-44.60,Groceries,Barclays Current
+2025-04-20,IKEA WEMBLEY,-148.00,Shopping,Barclays Current
+2025-04-21,COTE BRASSERIE,-52.40,Dining,Barclays Current
+2025-04-22,TRAINLINE,-28.50,Transport,Barclays Current
+2025-04-23,CURZON CINEMA SOHO,-14.50,Entertainment,Barclays Current
+2025-04-25,TESCO EXPRESS,-24.80,Groceries,Barclays Current
+2025-04-26,BOOTS PHARMACY,-28.60,Health,Barclays Current
+2025-04-27,TESCO METRO,-38.20,Groceries,Barclays Current
+2025-04-29,PIZZA EXPRESS,-44.20,Dining,Barclays Current
+2025-05-01,TFL TRAVEL CHARGE,-44.00,Transport,Barclays Current
+2025-05-02,SAINSBURYS SUPERSTORE,-72.40,Groceries,Barclays Current
+2025-05-04,STARBUCKS,-6.40,Dining,Barclays Current
+2025-05-07,SALARY - NEXUS DIGITAL LTD,3400.00,Income,Barclays Current
+2025-05-08,NETFLIX.COM,-17.99,Subscriptions,Barclays Current
+2025-05-09,SPOTIFY AB,-11.99,Subscriptions,Barclays Current
+2025-05-10,PURE GYM LTD,-26.99,Health,Barclays Current
+2025-05-11,BRITISH GAS,-58.00,Utilities,Barclays Current
+2025-05-12,THREE MOBILE,-18.00,Bills,Barclays Current
+2025-05-13,APPLE MUSIC,-10.99,Subscriptions,Barclays Current
+2025-05-14,AMAZON MARKETPLACE,-44.99,Shopping,Barclays Current
+2025-05-15,COUNCIL TAX DIRECT DEBIT,-142.00,Bills,Barclays Current
+2025-05-16,DELIVEROO,-36.80,Dining,Barclays Current
+2025-05-17,SKY BROADBAND,-38.00,Bills,Barclays Current
+2025-05-18,ALDI STORES,-51.20,Groceries,Barclays Current
+2025-05-19,TRAINLINE,-56.00,Transport,Barclays Current
+2025-05-20,REVOLUTION COCKTAIL BAR,-42.00,Entertainment,Barclays Current
+2025-05-21,WAHACA COVENT GARDEN,-38.40,Dining,Barclays Current
+2025-05-22,UBER TRIP,-16.20,Transport,Barclays Current
+2025-05-23,AMAZON PRIME,-8.99,Subscriptions,Barclays Current
+2025-05-24,TESCO METRO,-63.80,Groceries,Barclays Current
+2025-05-26,H&M,-67.00,Shopping,Barclays Current
+2025-05-27,PRET A MANGER,-7.80,Dining,Barclays Current
+2025-05-29,BRICK LANE CURRY HOUSE,-29.40,Dining,Barclays Current
+2025-05-31,ODEON CINEMA,-24.00,Entertainment,Barclays Current

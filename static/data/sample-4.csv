@@ -1,18 +1,154 @@
 Date,Description,Amount,Category,Account
-2026-01-15,CAPITAL CALL #7 - KEYSTONE PE III,-250000.00,Investments,PE Account
-2026-01-15,WIRE FEE,-25.00,Fees,PE Account
-2026-02-28,DISTRIBUTION - APEX PAYMENTS EXIT,120000.00,Distributions,PE Account
-2026-02-28,MANAGEMENT FEE Q4 2025,-18750.00,Fees,PE Account
-2026-03-31,MANAGEMENT FEE Q1 2026,-18750.00,Fees,PE Account
-2026-03-31,CARRIED INTEREST ACCRUAL,-38000.00,Fees,PE Account
-2026-03-31,HELIX ANALYTICS FAIR VALUE GAIN,88000.00,Unrealised Gains,PE Account
-2026-03-31,VERRA LOGISTICS FAIR VALUE GAIN,42000.00,Unrealised Gains,PE Account
-2026-03-31,CREST BIOTECH FAIR VALUE GAIN,28000.00,Unrealised Gains,PE Account
-2026-03-31,NORTHGATE ENERGY FAIR VALUE LOSS,-36000.00,Unrealised Losses,PE Account
-2026-03-31,QUARTERLY INTEREST ON CASH,4200.00,Interest,PE Account
-2026-01-01,LEGAL ADVISORY FEE,-8400.00,Professional Fees,PE Account
-2026-02-01,ACCOUNTING FEE,-4200.00,Professional Fees,PE Account
-2026-03-15,ESG MONITORING REPORT,-1200.00,Professional Fees,PE Account
-2026-01-20,PORTFOLIO COMPANY BOARD EXPENSES,-3400.00,Operating Expenses,PE Account
-2026-02-20,PORTFOLIO COMPANY BOARD EXPENSES,-2800.00,Operating Expenses,PE Account
-2026-03-20,PORTFOLIO COMPANY BOARD EXPENSES,-3100.00,Operating Expenses,PE Account
+2024-08-01,Client payment - Vertex Studio Ltd,4200.00,Income,Starling Business
+2024-08-02,AWS - AMAZON WEB SERVICES,-68.40,Software,Starling Business
+2024-08-03,GITHUB PRO,-3.99,Software,Starling Business
+2024-08-04,NOTION AI,-16.00,Software,Starling Business
+2024-08-05,FIGMA PROFESSIONAL,-14.00,Software,Starling Business
+2024-08-06,LIDL BRISTOL,-38.40,Groceries,Starling Business
+2024-08-07,TRAINLINE,-64.00,Transport,Starling Business
+2024-08-08,BOSTON TEA PARTY,-6.80,Dining,Starling Business
+2024-08-09,LINKEDIN PREMIUM,-39.99,Software,Starling Business
+2024-08-10,SPOTIFY,-11.99,Subscriptions,Starling Business
+2024-08-11,REGUS COWORKING BRISTOL,-280.00,Office,Starling Business
+2024-08-12,AMAZON,-44.99,Equipment,Starling Business
+2024-08-13,STARBUCKS,-5.60,Dining,Starling Business
+2024-08-14,TESCO EXPRESS,-28.40,Groceries,Starling Business
+2024-08-15,CANVA PRO,-12.99,Software,Starling Business
+2024-08-16,ADOBE CREATIVE CLOUD,-54.99,Software,Starling Business
+2024-08-17,UBER,-18.40,Transport,Starling Business
+2024-08-18,NANDOS,-28.60,Dining,Starling Business
+2024-08-19,APPLE ICLOUD 2TB,-3.99,Subscriptions,Starling Business
+2024-08-20,SLACK PRO,-7.25,Software,Starling Business
+2024-08-21,DROPBOX PLUS,-11.99,Software,Starling Business
+2024-08-22,RENT - BANK TRANSFER,-900.00,Housing,Starling Business
+2024-08-23,NATIONAL RAIL,-38.00,Transport,Starling Business
+2024-08-24,BOSTON TEA PARTY,-7.20,Dining,Starling Business
+2024-08-25,AMAZON KINDLE UNLIMITED,-11.99,Subscriptions,Starling Business
+2024-08-26,LIDL BRISTOL,-42.60,Groceries,Starling Business
+2024-08-27,ZOOM PRO,-13.99,Software,Starling Business
+2024-08-28,SAINSBURYS,-54.20,Groceries,Starling Business
+2024-09-01,Client payment - Meridian Labs,3800.00,Income,Starling Business
+2024-09-02,AWS - AMAZON WEB SERVICES,-72.80,Software,Starling Business
+2024-09-03,GITHUB PRO,-3.99,Software,Starling Business
+2024-09-04,NOTION AI,-16.00,Software,Starling Business
+2024-09-05,FIGMA PROFESSIONAL,-14.00,Software,Starling Business
+2024-09-06,REGUS COWORKING BRISTOL,-280.00,Office,Starling Business
+2024-09-07,TRAINLINE,-88.00,Transport,Starling Business
+2024-09-08,RENT - BANK TRANSFER,-900.00,Housing,Starling Business
+2024-09-09,LINKEDIN PREMIUM,-39.99,Software,Starling Business
+2024-09-10,SPOTIFY,-11.99,Subscriptions,Starling Business
+2024-09-11,APPLE ICLOUD 2TB,-3.99,Subscriptions,Starling Business
+2024-09-12,LIDL BRISTOL,-36.80,Groceries,Starling Business
+2024-09-13,STARBUCKS,-6.20,Dining,Starling Business
+2024-09-14,ADOBE CREATIVE CLOUD,-54.99,Software,Starling Business
+2024-09-15,CANVA PRO,-12.99,Software,Starling Business
+2024-09-16,SLACK PRO,-7.25,Software,Starling Business
+2024-09-17,ZOOM PRO,-13.99,Software,Starling Business
+2024-09-18,DROPBOX PLUS,-11.99,Software,Starling Business
+2024-09-19,COFFEE WORKS BRISTOL,-5.80,Dining,Starling Business
+2024-09-20,AMAZON - MECHANICAL KEYBOARD,-124.99,Equipment,Starling Business
+2024-09-21,TESCO EXPRESS,-44.60,Groceries,Starling Business
+2024-09-22,UBER,-14.40,Transport,Starling Business
+2024-09-24,WETHERSPOONS,-16.40,Dining,Starling Business
+2024-09-26,AMAZON KINDLE UNLIMITED,-11.99,Subscriptions,Starling Business
+2024-09-28,NATIONAL RAIL,-42.00,Transport,Starling Business
+2024-09-30,SAINSBURYS,-58.40,Groceries,Starling Business
+2024-10-01,Client payment - Vertex Studio Ltd,5600.00,Income,Starling Business
+2024-10-02,AWS - AMAZON WEB SERVICES,-84.20,Software,Starling Business
+2024-10-03,GITHUB PRO,-3.99,Software,Starling Business
+2024-10-04,NOTION AI,-16.00,Software,Starling Business
+2024-10-05,FIGMA PROFESSIONAL,-14.00,Software,Starling Business
+2024-10-06,REGUS COWORKING BRISTOL,-280.00,Office,Starling Business
+2024-10-07,RENT - BANK TRANSFER,-900.00,Housing,Starling Business
+2024-10-08,LINKEDIN PREMIUM,-39.99,Software,Starling Business
+2024-10-09,SPOTIFY,-11.99,Subscriptions,Starling Business
+2024-10-10,APPLE ICLOUD 2TB,-3.99,Subscriptions,Starling Business
+2024-10-11,TRAINLINE,-52.00,Transport,Starling Business
+2024-10-12,ADOBE CREATIVE CLOUD,-54.99,Software,Starling Business
+2024-10-13,CANVA PRO,-12.99,Software,Starling Business
+2024-10-14,SLACK PRO,-7.25,Software,Starling Business
+2024-10-15,ZOOM PRO,-13.99,Software,Starling Business
+2024-10-16,DROPBOX PLUS,-11.99,Software,Starling Business
+2024-10-17,LIDL BRISTOL,-40.20,Groceries,Starling Business
+2024-10-18,BOSTON TEA PARTY,-6.60,Dining,Starling Business
+2024-10-19,APPLE STORE - MONITOR,-529.00,Equipment,Starling Business
+2024-10-20,STARBUCKS,-5.40,Dining,Starling Business
+2024-10-22,NATIONAL RAIL,-34.00,Transport,Starling Business
+2024-10-23,SAINSBURYS,-62.40,Groceries,Starling Business
+2024-10-25,AMAZON KINDLE UNLIMITED,-11.99,Subscriptions,Starling Business
+2024-10-27,UBER,-12.60,Transport,Starling Business
+2024-10-29,TESCO EXPRESS,-38.80,Groceries,Starling Business
+2024-10-31,WETHERSPOONS,-22.40,Dining,Starling Business
+2024-11-01,Client payment - Meridian Labs,2400.00,Income,Starling Business
+2024-11-02,AWS - AMAZON WEB SERVICES,-78.40,Software,Starling Business
+2024-11-03,GITHUB PRO,-3.99,Software,Starling Business
+2024-11-04,NOTION AI,-16.00,Software,Starling Business
+2024-11-05,FIGMA PROFESSIONAL,-14.00,Software,Starling Business
+2024-11-06,REGUS COWORKING BRISTOL,-280.00,Office,Starling Business
+2024-11-07,RENT - BANK TRANSFER,-900.00,Housing,Starling Business
+2024-11-08,LINKEDIN PREMIUM,-39.99,Software,Starling Business
+2024-11-09,SPOTIFY,-11.99,Subscriptions,Starling Business
+2024-11-10,APPLE ICLOUD 2TB,-3.99,Subscriptions,Starling Business
+2024-11-11,ADOBE CREATIVE CLOUD,-54.99,Software,Starling Business
+2024-11-12,CANVA PRO,-12.99,Software,Starling Business
+2024-11-13,SLACK PRO,-7.25,Software,Starling Business
+2024-11-14,ZOOM PRO,-13.99,Software,Starling Business
+2024-11-15,DROPBOX PLUS,-11.99,Software,Starling Business
+2024-11-16,TRAINLINE,-78.00,Transport,Starling Business
+2024-11-17,LIDL BRISTOL,-36.40,Groceries,Starling Business
+2024-11-18,BOSTON TEA PARTY,-7.00,Dining,Starling Business
+2024-11-19,AMAZON - USB HUB,-68.99,Equipment,Starling Business
+2024-11-21,STARBUCKS,-6.00,Dining,Starling Business
+2024-11-22,SAINSBURYS,-52.40,Groceries,Starling Business
+2024-11-24,AMAZON KINDLE UNLIMITED,-11.99,Subscriptions,Starling Business
+2024-11-26,NATIONAL RAIL,-44.00,Transport,Starling Business
+2024-11-28,TESCO EXPRESS,-42.60,Groceries,Starling Business
+2024-11-30,WETHERSPOONS,-18.60,Dining,Starling Business
+2024-12-05,Client payment - Greenwave Tech,6800.00,Income,Starling Business
+2024-12-02,AWS - AMAZON WEB SERVICES,-92.40,Software,Starling Business
+2024-12-03,GITHUB PRO,-3.99,Software,Starling Business
+2024-12-04,NOTION AI,-16.00,Software,Starling Business
+2024-12-06,FIGMA PROFESSIONAL,-14.00,Software,Starling Business
+2024-12-07,REGUS COWORKING BRISTOL,-280.00,Office,Starling Business
+2024-12-08,RENT - BANK TRANSFER,-900.00,Housing,Starling Business
+2024-12-09,LINKEDIN PREMIUM,-39.99,Software,Starling Business
+2024-12-10,SPOTIFY,-11.99,Subscriptions,Starling Business
+2024-12-11,APPLE ICLOUD 2TB,-3.99,Subscriptions,Starling Business
+2024-12-12,ADOBE CREATIVE CLOUD,-54.99,Software,Starling Business
+2024-12-13,CANVA PRO,-12.99,Software,Starling Business
+2024-12-14,SLACK PRO,-7.25,Software,Starling Business
+2024-12-15,ZOOM PRO,-13.99,Software,Starling Business
+2024-12-16,DROPBOX PLUS,-11.99,Software,Starling Business
+2024-12-17,TRAINLINE,-94.00,Transport,Starling Business
+2024-12-18,CHRISTMAS DINNER - CASAMIA,-84.60,Dining,Starling Business
+2024-12-19,AMAZON,-48.99,Shopping,Starling Business
+2024-12-20,LIDL BRISTOL,-62.40,Groceries,Starling Business
+2024-12-22,AMAZON KINDLE UNLIMITED,-11.99,Subscriptions,Starling Business
+2024-12-23,NATIONAL RAIL,-56.00,Transport,Starling Business
+2024-12-27,TESCO EXPRESS,-38.40,Groceries,Starling Business
+2024-12-30,WETHERSPOONS,-24.60,Dining,Starling Business
+2025-01-02,AWS - AMAZON WEB SERVICES,-68.80,Software,Starling Business
+2025-01-03,GITHUB PRO,-3.99,Software,Starling Business
+2025-01-04,NOTION AI,-16.00,Software,Starling Business
+2025-01-05,FIGMA PROFESSIONAL,-14.00,Software,Starling Business
+2025-01-06,REGUS COWORKING BRISTOL,-280.00,Office,Starling Business
+2025-01-07,RENT - BANK TRANSFER,-900.00,Housing,Starling Business
+2025-01-08,LINKEDIN PREMIUM,-39.99,Software,Starling Business
+2025-01-09,SPOTIFY,-11.99,Subscriptions,Starling Business
+2025-01-10,APPLE ICLOUD 2TB,-3.99,Subscriptions,Starling Business
+2025-01-11,ADOBE CREATIVE CLOUD,-54.99,Software,Starling Business
+2025-01-12,CANVA PRO,-12.99,Software,Starling Business
+2025-01-13,SLACK PRO,-7.25,Software,Starling Business
+2025-01-14,ZOOM PRO,-13.99,Software,Starling Business
+2025-01-15,DROPBOX PLUS,-11.99,Software,Starling Business
+2025-01-16,LIDL BRISTOL,-44.20,Groceries,Starling Business
+2025-01-17,BOSTON TEA PARTY,-6.40,Dining,Starling Business
+2025-01-18,STARBUCKS,-5.80,Dining,Starling Business
+2025-01-20,Client payment - Vertex Studio Ltd,3200.00,Income,Starling Business
+2025-01-22,NATIONAL RAIL,-48.00,Transport,Starling Business
+2025-01-24,TRAINLINE,-66.00,Transport,Starling Business
+2025-01-25,SAINSBURYS,-56.40,Groceries,Starling Business
+2025-01-27,AMAZON KINDLE UNLIMITED,-11.99,Subscriptions,Starling Business
+2025-01-28,AMAZON - DESK LAMP,-34.99,Equipment,Starling Business
+2025-01-29,TESCO EXPRESS,-36.80,Groceries,Starling Business
+2025-01-31,WETHERSPOONS,-14.40,Dining,Starling Business

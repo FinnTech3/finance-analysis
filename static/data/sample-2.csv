@@ -1,52 +1,132 @@
 Date,Description,Amount,Category,Account
-2026-01-02,DIVIDEND - HSBC HOLDINGS,3420.00,Dividends,Investment
-2026-01-05,PRIVATE MEMBERS CLUB,-580.00,Lifestyle,Current
-2026-01-07,WEALTH MGMT FEE,-1420.00,Fees,Investment
-2026-01-09,CHAUFFEUR SERVICE,-240.00,Transport,Current
-2026-01-10,HARRODS,-1840.00,Shopping,Current
-2026-01-12,QUARTIER GENERAL PARIS,-680.00,Dining,Current
-2026-01-14,COUPON - UK GILT 4.25%,3025.50,Dividends,Investment
-2026-01-15,PRIVATE SCHOOL FEES,-8400.00,Education,Current
-2026-01-18,FINE WINE MERCHANT,-2200.00,Lifestyle,Current
-2026-01-21,DIVIDEND - SHELL PLC,2780.40,Dividends,Investment
-2026-01-23,TRAVEL - FIRST CLASS EUROSTAR,-480.00,Transport,Current
-2026-01-26,SAVILLS PROPERTY MGMT,-1200.00,Property,Current
-2026-01-28,CHARITABLE DONATION,-5000.00,Charity,Current
-2026-01-31,INVESTMENT INCOME,12400.00,Income,Investment
-2026-02-03,DIVIDEND - BARCLAYS,1644.00,Dividends,Investment
-2026-02-05,PRIVATE MEMBERS CLUB,-580.00,Lifestyle,Current
-2026-02-08,CHELSEA FLOWER SHOW,-340.00,Entertainment,Current
-2026-02-10,TAILORED SUIT - SAVILE ROW,-3200.00,Shopping,Current
-2026-02-12,WEALTH MGMT FEE,-1420.00,Fees,Investment
-2026-02-14,PETRUS RESTAURANT,-920.00,Dining,Current
-2026-02-17,ASTON MARTIN SERVICE,-4800.00,Transport,Current
-2026-02-19,PRIVATE SCHOOL FEES,-8400.00,Education,Current
-2026-02-21,COUPON - TREASURY BILL,1139.35,Dividends,Investment
-2026-02-24,FINE ART AUCTION,-18000.00,Lifestyle,Current
-2026-02-26,INVESTMENT INCOME,14200.00,Income,Investment
-2026-03-01,DIVIDEND - ASTRAZENECA,2218.00,Dividends,Investment
-2026-03-04,PRIVATE MEMBERS CLUB,-580.00,Lifestyle,Current
-2026-03-06,WEALTH MGMT FEE,-1420.00,Fees,Investment
-2026-03-08,GLENEAGLES HOTEL,-4200.00,Travel,Current
-2026-03-12,WINE CELLAR PURCHASE,-3400.00,Lifestyle,Current
-2026-03-15,PRIVATE SCHOOL FEES,-8400.00,Education,Current
-2026-03-18,SOTHEBYS PURCHASE,-24000.00,Lifestyle,Current
-2026-03-22,BENTLEY INSURANCE,-1800.00,Insurance,Current
-2026-03-25,CHARITABLE DONATION,-5000.00,Charity,Current
-2026-03-28,INVESTMENT INCOME,16800.00,Income,Investment
-2026-03-31,REBALANCING PROCEEDS,8200.00,Investments,Investment
-2026-04-02,PRIVATE MEMBERS CLUB,-580.00,Lifestyle,Current
-2026-04-04,WEALTH MGMT FEE,-1420.00,Fees,Investment
-2026-04-07,THE IVY RESTAURANT,-840.00,Dining,Current
-2026-04-10,PRIVATE SCHOOL FEES,-8400.00,Education,Current
-2026-04-13,MONACO HOTEL,-6800.00,Travel,Current
-2026-04-15,DIVIDEND - MICROSOFT,4100.00,Dividends,Investment
-2026-04-18,PERSONAL TRAINER,-600.00,Health,Current
-2026-04-21,JEWELLER - CARTIER,-8400.00,Shopping,Current
-2026-04-24,INVESTMENT INCOME,18400.00,Income,Investment
-2026-04-28,CHARITABLE DONATION,-10000.00,Charity,Current
-2026-05-01,PRIVATE MEMBERS CLUB,-580.00,Lifestyle,Current
-2026-05-05,WEALTH MGMT FEE,-1420.00,Fees,Investment
-2026-05-08,DIVIDEND - NVIDIA,2840.00,Dividends,Investment
-2026-05-10,PRIVATE SCHOOL FEES,-8400.00,Education,Current
-2026-05-14,INVESTMENT INCOME,21000.00,Income,Investment
+2024-09-01,Student loan - SLC,4420.00,Income,Monzo
+2024-09-02,Aldi,-24.60,Groceries,Monzo
+2024-09-04,McDonald's,-6.49,Dining,Monzo
+2024-09-05,Uber,-8.20,Transport,Monzo
+2024-09-06,ASOS,-54.99,Shopping,Monzo
+2024-09-07,Spotify,-11.99,Subscriptions,Monzo
+2024-09-08,Netflix,-17.99,Subscriptions,Monzo
+2024-09-09,Lidl,-19.40,Groceries,Monzo
+2024-09-10,Deliveroo,-18.40,Dining,Monzo
+2024-09-11,Greggs,-3.20,Dining,Monzo
+2024-09-12,Co-op,-14.80,Groceries,Monzo
+2024-09-13,Primark,-42.00,Shopping,Monzo
+2024-09-14,Apple TV+,-8.99,Subscriptions,Monzo
+2024-09-15,TfL Oyster top-up,-20.00,Transport,Monzo
+2024-09-16,Wetherspoons,-14.20,Dining,Monzo
+2024-09-17,Subway,-7.80,Dining,Monzo
+2024-09-18,Amazon,-28.99,Shopping,Monzo
+2024-09-19,KFC,-9.60,Dining,Monzo
+2024-09-20,Boots,-12.40,Health,Monzo
+2024-09-21,Morrisons,-31.60,Groceries,Monzo
+2024-09-22,Uber Eats,-16.20,Dining,Monzo
+2024-09-25,SU Bar Manchester,-24.00,Entertainment,Monzo
+2024-09-27,Aldi,-22.80,Groceries,Monzo
+2024-09-28,Ryman,-8.40,Shopping,Monzo
+2024-09-30,Lidl,-18.60,Groceries,Monzo
+2024-10-01,Part-time wages - JD Sports,820.00,Income,Monzo
+2024-10-02,Aldi,-26.40,Groceries,Monzo
+2024-10-03,McDonald's,-7.20,Dining,Monzo
+2024-10-05,Spotify,-11.99,Subscriptions,Monzo
+2024-10-06,Netflix,-17.99,Subscriptions,Monzo
+2024-10-07,Apple TV+,-8.99,Subscriptions,Monzo
+2024-10-08,Deliveroo,-21.60,Dining,Monzo
+2024-10-09,Greggs,-3.60,Dining,Monzo
+2024-10-10,Co-op,-16.20,Groceries,Monzo
+2024-10-11,Uber,-9.40,Transport,Monzo
+2024-10-12,Shein,-38.00,Shopping,Monzo
+2024-10-14,Wetherspoons,-18.40,Dining,Monzo
+2024-10-16,Amazon,-14.99,Shopping,Monzo
+2024-10-18,KFC,-8.40,Dining,Monzo
+2024-10-19,Lidl,-24.20,Groceries,Monzo
+2024-10-20,SU Halloween Night,-12.00,Entertainment,Monzo
+2024-10-22,Just Eat,-19.80,Dining,Monzo
+2024-10-24,Superdrug,-9.60,Health,Monzo
+2024-10-26,Morrisons,-28.40,Groceries,Monzo
+2024-10-28,Uber,-7.60,Transport,Monzo
+2024-10-30,eBay,-24.00,Shopping,Monzo
+2024-11-01,Part-time wages - JD Sports,820.00,Income,Monzo
+2024-11-02,Aldi,-28.60,Groceries,Monzo
+2024-11-03,Greggs,-3.40,Dining,Monzo
+2024-11-04,Spotify,-11.99,Subscriptions,Monzo
+2024-11-05,Netflix,-17.99,Subscriptions,Monzo
+2024-11-06,Apple TV+,-8.99,Subscriptions,Monzo
+2024-11-07,McDonald's,-8.20,Dining,Monzo
+2024-11-08,Co-op,-18.60,Groceries,Monzo
+2024-11-09,Uber Eats,-24.40,Dining,Monzo
+2024-11-10,Deliveroo,-16.80,Dining,Monzo
+2024-11-11,Primark,-36.00,Shopping,Monzo
+2024-11-12,TfL Oyster top-up,-20.00,Transport,Monzo
+2024-11-14,Wetherspoons,-16.80,Dining,Monzo
+2024-11-16,Lidl,-22.40,Groceries,Monzo
+2024-11-17,Amazon,-34.99,Shopping,Monzo
+2024-11-19,Subway,-8.40,Dining,Monzo
+2024-11-20,SU Bar,-22.00,Entertainment,Monzo
+2024-11-22,Boots,-14.60,Health,Monzo
+2024-11-23,Morrisons,-26.80,Groceries,Monzo
+2024-11-25,ASOS,-67.00,Shopping,Monzo
+2024-11-27,KFC,-10.20,Dining,Monzo
+2024-11-29,Uber,-8.80,Transport,Monzo
+2024-11-30,Aldi,-20.40,Groceries,Monzo
+2024-12-01,Part-time wages - JD Sports,820.00,Income,Monzo
+2024-12-02,Aldi,-32.60,Groceries,Monzo
+2024-12-03,Spotify,-11.99,Subscriptions,Monzo
+2024-12-04,Netflix,-17.99,Subscriptions,Monzo
+2024-12-05,Apple TV+,-8.99,Subscriptions,Monzo
+2024-12-06,Greggs,-4.20,Dining,Monzo
+2024-12-07,Amazon,-22.99,Shopping,Monzo
+2024-12-09,Deliveroo,-28.60,Dining,Monzo
+2024-12-10,Co-op,-24.40,Groceries,Monzo
+2024-12-11,McDonald's,-9.60,Dining,Monzo
+2024-12-12,Uber,-12.40,Transport,Monzo
+2024-12-13,H&M,-48.00,Shopping,Monzo
+2024-12-14,Wetherspoons,-28.60,Dining,Monzo
+2024-12-16,ASDA,-54.80,Groceries,Monzo
+2024-12-18,Uber Eats,-22.40,Dining,Monzo
+2024-12-20,Lidl,-29.60,Groceries,Monzo
+2024-12-21,Amazon - Christmas gifts,-36.00,Shopping,Monzo
+2024-12-22,KFC,-11.80,Dining,Monzo
+2024-12-23,National Rail,-28.00,Transport,Monzo
+2024-12-31,SU New Year Eve,-18.00,Entertainment,Monzo
+2025-01-01,Part-time wages - JD Sports,820.00,Income,Monzo
+2025-01-02,Aldi,-22.80,Groceries,Monzo
+2025-01-03,Greggs,-3.60,Dining,Monzo
+2025-01-04,Spotify,-11.99,Subscriptions,Monzo
+2025-01-05,Netflix,-17.99,Subscriptions,Monzo
+2025-01-06,Apple TV+,-8.99,Subscriptions,Monzo
+2025-01-07,Lidl,-24.40,Groceries,Monzo
+2025-01-08,Uber,-8.60,Transport,Monzo
+2025-01-09,McDonald's,-7.40,Dining,Monzo
+2025-01-10,Deliveroo,-19.20,Dining,Monzo
+2025-01-11,Co-op,-16.80,Groceries,Monzo
+2025-01-12,Boots,-11.40,Health,Monzo
+2025-01-13,ASOS,-44.00,Shopping,Monzo
+2025-01-14,Wetherspoons,-12.60,Dining,Monzo
+2025-01-16,Morrisons,-28.40,Groceries,Monzo
+2025-01-18,Amazon,-18.99,Shopping,Monzo
+2025-01-20,Subway,-7.60,Dining,Monzo
+2025-01-22,SU Bar,-16.00,Entertainment,Monzo
+2025-01-24,Uber Eats,-21.40,Dining,Monzo
+2025-01-26,Lidl,-20.80,Groceries,Monzo
+2025-01-28,KFC,-8.20,Dining,Monzo
+2025-01-30,Superdrug,-8.80,Health,Monzo
+2025-02-01,Part-time wages - JD Sports,820.00,Income,Monzo
+2025-02-02,Aldi,-25.60,Groceries,Monzo
+2025-02-03,Spotify,-11.99,Subscriptions,Monzo
+2025-02-04,Netflix,-17.99,Subscriptions,Monzo
+2025-02-05,Apple TV+,-8.99,Subscriptions,Monzo
+2025-02-06,Greggs,-4.00,Dining,Monzo
+2025-02-07,McDonald's,-8.80,Dining,Monzo
+2025-02-08,Deliveroo,-22.80,Dining,Monzo
+2025-02-09,Co-op,-18.20,Groceries,Monzo
+2025-02-10,Uber,-9.20,Transport,Monzo
+2025-02-11,Amazon,-28.99,Shopping,Monzo
+2025-02-12,Wetherspoons,-14.40,Dining,Monzo
+2025-02-14,Slug and Lettuce - Valentines,-38.00,Dining,Monzo
+2025-02-16,Lidl,-21.60,Groceries,Monzo
+2025-02-18,Uber Eats,-18.60,Dining,Monzo
+2025-02-20,Shein,-42.00,Shopping,Monzo
+2025-02-22,National Rail,-32.00,Transport,Monzo
+2025-02-24,SU Bar,-20.00,Entertainment,Monzo
+2025-02-26,Morrisons,-29.80,Groceries,Monzo
+2025-02-28,KFC,-9.40,Dining,Monzo
