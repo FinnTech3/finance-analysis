@@ -42,6 +42,31 @@ app.add_middleware(
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
+# ── Cold-start bootstrap ────────────────────────────────────────────────
+# Render's free tier filesystem is ephemeral. Each time the instance spins up,
+# the DuckDB file is gone — so on first request we auto-load sample-1 to make
+# the demo immediately populated. No effect if data is already present (e.g.
+# local development where the user has their own .duckdb file).
+def _bootstrap_sample_data() -> None:
+    try:
+        conn = get_connection()
+        existing = conn.execute("SELECT COUNT(*) FROM transactions").fetchone()[0]
+        if existing == 0:
+            sample_path = Path(__file__).resolve().parent / "static" / "data" / "sample-1.csv"
+            if sample_path.exists():
+                import_csv(conn, str(sample_path))
+                print(f"[startup] Auto-loaded sample-1.csv into empty database", flush=True)
+            else:
+                print(f"[startup] No sample data found at {sample_path}", flush=True)
+        else:
+            print(f"[startup] Database already has {existing} transactions — skipping bootstrap", flush=True)
+    except Exception as e:
+        print(f"[startup] Bootstrap failed (non-fatal): {e}", flush=True)
+
+
+_bootstrap_sample_data()
+
+
 @app.get("/")
 def root():
     return FileResponse("static/index.html")

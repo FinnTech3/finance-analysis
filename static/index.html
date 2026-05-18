@@ -20,14 +20,14 @@
       --ease: cubic-bezier(.4,0,.2,1);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; }
-    body { background: var(--bg); color: var(--text); font-family: var(--mono); line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    html { font-size: 16px; height: 100%; }
+    body { background: var(--bg); color: var(--text); font-family: var(--mono); line-height: 1.6; height: 100%; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
     button { cursor: pointer; font-family: inherit; }
 
     /* ── Header ── */
-    .header { display: flex; align-items: center; gap: 1.2rem; padding: .9rem 2rem; border-bottom: 1px solid var(--border); background: rgba(7,7,15,.92); backdrop-filter: blur(16px); position: sticky; top: 0; z-index: 100; }
+    .header { display: flex; align-items: center; gap: 1.2rem; padding: .9rem 2rem; border-bottom: 1px solid var(--border); background: rgba(7,7,15,.92); backdrop-filter: blur(16px); flex-shrink: 0; }
     .header__logo { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
     .header__title { font-family: var(--display); font-size: 1.3rem; font-weight: 700; color: var(--text); }
     .header__dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse 2.5s ease-in-out infinite; flex-shrink: 0; }
@@ -35,7 +35,7 @@
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
 
     /* ── Document Strip ── */
-    .doc-strip { border-bottom: 1px solid var(--border); background: var(--surface); padding: 1rem 1.5rem; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--border-2) transparent; }
+    .doc-strip { border-bottom: 1px solid var(--border); background: var(--surface); padding: 1rem 1.5rem; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--border-2) transparent; flex-shrink: 0; }
     .doc-strip::-webkit-scrollbar { height: 3px; }
     .doc-strip::-webkit-scrollbar-thumb { background: var(--border-2); }
     .doc-strip-label { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-3); margin-bottom: .8rem; }
@@ -81,7 +81,7 @@
     .doc-card--add:hover .add-label { color: var(--text-2); }
 
     /* ── Layout ── */
-    .main { display: grid; grid-template-columns: 200px 1fr; height: calc(100vh - 106px); overflow: hidden; }
+    .main { display: grid; grid-template-columns: 200px 1fr; flex: 1; min-height: 0; overflow: hidden; }
     .sidebar { border-right: 1px solid var(--border); padding: 1.2rem 0; display: flex; flex-direction: column; gap: .2rem; overflow-y: auto; }
     .sidebar__label { font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-3); padding: .5rem 1.3rem; margin-top: .4rem; }
     .sidebar__item { display: flex; align-items: center; gap: .65rem; padding: .55rem 1.3rem; font-size: .7rem; letter-spacing: .06em; color: var(--text-2); background: none; border: none; width: 100%; text-align: left; transition: color .2s, background .2s; position: relative; }
@@ -826,6 +826,10 @@ async function uploadFile(file) {
 
 // ── postMessage height reporter (for portfolio iframe embed) ──
 function reportHeight() {
+  // Don't report while a modal has locked body scroll — that transient
+  // overflow:hidden change would trigger the parent to resize the iframe
+  // which would trigger another ResizeObserver fire, creating an infinite loop.
+  if (document.body.style.overflow === 'hidden') return;
   const h = document.body.scrollHeight;
   if (window.parent !== window) {
     window.parent.postMessage({ type: 'financeHeight', height: h }, '*');
@@ -836,7 +840,7 @@ reportHeight();
 let _roTimer = null;
 new ResizeObserver(() => {
   clearTimeout(_roTimer);
-  _roTimer = setTimeout(reportHeight, 60);
+  _roTimer = setTimeout(reportHeight, 80);
 }).observe(document.body);
 </script>
 </body>
