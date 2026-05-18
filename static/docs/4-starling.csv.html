@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Starling Bank — Jake O'Brien — Statement Aug 2024–Jan 2025</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f4f8; color: #1a1a1a; font-size: 13px; }
+
+  .bank-header { background: #7B61FF; color: #fff; padding: 22px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .bank-logo { font-size: 22px; font-weight: 800; letter-spacing: -.5px; }
+  .bank-logo span { opacity: .7; font-weight: 400; font-size: 14px; margin-left: 8px; }
+  .bank-header-right { text-align: right; font-size: 11px; opacity: .9; line-height: 1.8; }
+
+  .account-bar { background: #6450e0; color: #fff; padding: 12px 32px; display: flex; gap: 40px; }
+  .account-bar__item { display: flex; flex-direction: column; gap: 2px; }
+  .account-bar__label { opacity: .65; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+  .account-bar__value { font-weight: 600; font-size: 13px; }
+
+  .body { padding: 24px 32px; max-width: 900px; margin: 0 auto; }
+
+  .section-title { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #7B61FF; font-weight: 700; border-bottom: 2px solid #7B61FF; padding-bottom: 6px; margin-bottom: 14px; margin-top: 28px; }
+
+  .summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .summary-card { background: #fff; border: 1px solid #dde3ea; border-radius: 8px; padding: 14px 18px; }
+  .summary-card__label { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #888; margin-bottom: 6px; }
+  .summary-card__value { font-size: 20px; font-weight: 700; }
+  .summary-card__value.positive { color: #00a86b; }
+  .summary-card__value.negative { color: #c0392b; }
+
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #dde3ea; border-radius: 8px; overflow: hidden; }
+  thead { background: #f8f6ff; }
+  th { padding: 10px 12px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #777; font-weight: 600; border-bottom: 1px solid #dde3ea; }
+  td { padding: 9px 12px; border-bottom: 1px solid #f4f4f8; font-size: 12px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8f6ff; }
+  .amount-neg { color: #c0392b; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .amount-pos { color: #00a86b; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .category-pill { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; background: #ede9ff; color: #7B61FF; font-weight: 600; }
+  .date-col { color: #777; font-size: 11px; white-space: nowrap; }
+
+  .footer { text-align: center; font-size: 10px; color: #aaa; margin: 28px 0 12px; line-height: 1.7; }
+  .notice { background: #f8f6ff; border-left: 3px solid #7B61FF; padding: 10px 14px; border-radius: 4px; font-size: 11px; color: #555; margin-top: 16px; }
+
+  .persona-card { background: #fff; border: 1px solid #dde3ea; border-radius: 8px; padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start; margin-bottom: 4px; }
+  .persona-avatar { width: 42px; height: 42px; border-radius: 50%; background: #7B61FF; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 18px; flex-shrink: 0; }
+  .persona-details { line-height: 1.6; }
+  .persona-name { font-weight: 700; font-size: 14px; }
+  .persona-sub { font-size: 11px; color: #777; }
+  .income-badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; background: #e6f9f0; color: #00a86b; font-weight: 700; margin-left: 6px; }
+</style>
+</head>
+<body>
+
+<div class="bank-header">
+  <div class="bank-logo">Starling <span>Business Account</span></div>
+  <div class="bank-header-right">
+    Business Account Statement<br>
+    01 August 2024 – 31 January 2025<br>
+    Account: ****5519
+  </div>
+</div>
+
+<div class="account-bar">
+  <div class="account-bar__item">
+    <span class="account-bar__label">Account Holder</span>
+    <span class="account-bar__value">Jake O'Brien</span>
+  </div>
+  <div class="account-bar__item">
+    <span class="account-bar__label">Account Type</span>
+    <span class="account-bar__value">Starling Business</span>
+  </div>
+  <div class="account-bar__item">
+    <span class="account-bar__label">Opening Balance</span>
+    <span class="account-bar__value">£2,140.00</span>
+  </div>
+  <div class="account-bar__item">
+    <span class="account-bar__label">Closing Balance</span>
+    <span class="account-bar__value">£6,882.55</span>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="section-title">Account Holder Profile</div>
+  <div class="persona-card">
+    <div class="persona-avatar">J</div>
+    <div class="persona-details">
+      <div class="persona-name">Jake O'Brien, 29 — Bristol, UK <span class="income-badge">Freelance</span></div>
+      <div class="persona-sub">Freelance full-stack developer · Clients: Vertex Studio, Meridian Labs, Greenwave Tech · Income: £2,400–£6,800/month (variable)</div>
+      <div class="persona-sub" style="margin-top:4px">Regular expenses: AWS, GitHub, Notion, Figma, Adobe CC, Regus coworking, Trainline, Lidl</div>
+    </div>
+  </div>
+
+  <div class="section-title">Period Summary</div>
+  <div class="summary-row">
+    <div class="summary-card">
+      <div class="summary-card__label">Total Income</div>
+      <div class="summary-card__value positive">+£26,000.00</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card__label">Total Expenditure</div>
+      <div class="summary-card__value negative">−£21,257.45</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card__label">Net Position</div>
+      <div class="summary-card__value positive">+£4,742.55</div>
+    </div>
+  </div>
+
+  <div class="section-title">Recent Transactions</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th style="text-align:right">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="date-col">01 Aug 2024</td><td>Client payment — Vertex Studio Ltd</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£4,200.00</td></tr>
+      <tr><td class="date-col">02 Aug 2024</td><td>AWS — Amazon Web Services</td><td><span class="category-pill">Software</span></td><td class="amount-neg" style="text-align:right">−£68.40</td></tr>
+      <tr><td class="date-col">04 Aug 2024</td><td>Notion AI</td><td><span class="category-pill">Software</span></td><td class="amount-neg" style="text-align:right">−£16.00</td></tr>
+      <tr><td class="date-col">05 Aug 2024</td><td>Figma Professional</td><td><span class="category-pill">Software</span></td><td class="amount-neg" style="text-align:right">−£14.00</td></tr>
+      <tr><td class="date-col">09 Aug 2024</td><td>LinkedIn Premium</td><td><span class="category-pill">Software</span></td><td class="amount-neg" style="text-align:right">−£39.99</td></tr>
+      <tr><td class="date-col">11 Aug 2024</td><td>Regus Coworking Bristol</td><td><span class="category-pill">Office</span></td><td class="amount-neg" style="text-align:right">−£280.00</td></tr>
+      <tr><td class="date-col">16 Aug 2024</td><td>Adobe Creative Cloud</td><td><span class="category-pill">Software</span></td><td class="amount-neg" style="text-align:right">−£54.99</td></tr>
+      <tr><td class="date-col">22 Aug 2024</td><td>Rent — Bank Transfer</td><td><span class="category-pill">Housing</span></td><td class="amount-neg" style="text-align:right">−£900.00</td></tr>
+      <tr><td class="date-col">01 Sep 2024</td><td>Client payment — Meridian Labs</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£3,800.00</td></tr>
+      <tr><td class="date-col">01 Oct 2024</td><td>Client payment — Vertex Studio Ltd</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£5,600.00</td></tr>
+      <tr><td class="date-col">19 Oct 2024</td><td>Apple Store — Monitor</td><td><span class="category-pill">Equipment</span></td><td class="amount-neg" style="text-align:right">−£529.00</td></tr>
+      <tr><td class="date-col">05 Dec 2024</td><td>Client payment — Greenwave Tech</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£6,800.00</td></tr>
+      <tr><td class="date-col">17 Dec 2024</td><td>Trainline</td><td><span class="category-pill">Transport</span></td><td class="amount-neg" style="text-align:right">−£94.00</td></tr>
+      <tr><td class="date-col">20 Jan 2025</td><td>Client payment — Vertex Studio Ltd</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£3,200.00</td></tr>
+    </tbody>
+  </table>
+
+  <div class="notice">Sample statement for demonstration. Click <strong>Load Data into Analyser</strong> to import all 152 transactions — great for analysing irregular freelance income vs fixed subscription costs.</div>
+
+  <div class="footer">
+    Starling Bank Limited · Authorised by the Prudential Regulation Authority<br>
+    Registered in England &amp; Wales (No. 09092149) · Registered Office: 3rd Floor, 2 Finsbury Avenue, London EC2M 2PP
+  </div>
+</div>
+
+</body>
+</html>

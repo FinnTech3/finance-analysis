@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Barclays — Alex Rivera — Statement Jan–May 2025</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; background: #f4f6f8; color: #1a1a1a; font-size: 13px; }
+
+  .bank-header { background: #005EB8; color: #fff; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .bank-logo { font-size: 22px; font-weight: 700; letter-spacing: -.5px; }
+  .bank-logo span { color: #00AEEF; }
+  .bank-header-right { text-align: right; font-size: 11px; opacity: .85; line-height: 1.7; }
+
+  .account-bar { background: #003B70; color: #fff; padding: 12px 32px; display: flex; gap: 40px; font-size: 12px; }
+  .account-bar__item { display: flex; flex-direction: column; gap: 2px; }
+  .account-bar__label { opacity: .65; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+  .account-bar__value { font-weight: 600; font-size: 13px; }
+
+  .body { padding: 24px 32px; max-width: 900px; margin: 0 auto; }
+
+  .section-title { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #005EB8; font-weight: 700; border-bottom: 2px solid #005EB8; padding-bottom: 6px; margin-bottom: 14px; margin-top: 28px; }
+
+  .summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 4px; }
+  .summary-card { background: #fff; border: 1px solid #dde3ea; border-radius: 4px; padding: 14px 18px; }
+  .summary-card__label { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #666; margin-bottom: 6px; }
+  .summary-card__value { font-size: 20px; font-weight: 700; color: #1a1a1a; }
+  .summary-card__value.positive { color: #007a4d; }
+  .summary-card__value.negative { color: #c0392b; }
+
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #dde3ea; border-radius: 4px; overflow: hidden; }
+  thead { background: #f0f4f8; }
+  th { padding: 9px 12px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #555; font-weight: 600; border-bottom: 1px solid #dde3ea; }
+  td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; font-size: 12px; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fbff; }
+  .amount-neg { color: #c0392b; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .amount-pos { color: #007a4d; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .category-pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; background: #eef3fa; color: #005EB8; font-weight: 600; }
+  .date-col { color: #555; font-size: 11px; white-space: nowrap; }
+
+  .footer { text-align: center; font-size: 10px; color: #999; margin: 28px 0 12px; line-height: 1.7; }
+  .notice { background: #fff8e1; border-left: 3px solid #f9a825; padding: 10px 14px; border-radius: 2px; font-size: 11px; color: #555; margin-top: 16px; }
+</style>
+</head>
+<body>
+
+<div class="bank-header">
+  <div class="bank-logo">BARCLAYS<span>.</span></div>
+  <div class="bank-header-right">
+    Current Account Statement<br>
+    01 January 2025 – 31 May 2025<br>
+    Sort Code: 20-22-07 &nbsp;|&nbsp; Account: ****4821
+  </div>
+</div>
+
+<div class="account-bar">
+  <div class="account-bar__item">
+    <span class="account-bar__label">Account Holder</span>
+    <span class="account-bar__value">Mr Alex Rivera</span>
+  </div>
+  <div class="account-bar__item">
+    <span class="account-bar__label">Account Type</span>
+    <span class="account-bar__value">Barclays Current Account</span>
+  </div>
+  <div class="account-bar__item">
+    <span class="account-bar__label">Opening Balance</span>
+    <span class="account-bar__value">£1,842.60</span>
+  </div>
+  <div class="account-bar__item">
+    <span class="account-bar__label">Closing Balance</span>
+    <span class="account-bar__value">£3,214.18</span>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="section-title">Period Summary</div>
+  <div class="summary-row">
+    <div class="summary-card">
+      <div class="summary-card__label">Total Income</div>
+      <div class="summary-card__value positive">+£17,320.00</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card__label">Total Expenditure</div>
+      <div class="summary-card__value negative">−£15,948.42</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card__label">Net Position</div>
+      <div class="summary-card__value positive">+£1,371.58</div>
+    </div>
+  </div>
+
+  <div class="section-title">Recent Transactions</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th style="text-align:right">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="date-col">08 Jan 2025</td><td>SALARY — NEXUS DIGITAL LTD</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£3,400.00</td></tr>
+      <tr><td class="date-col">09 Jan 2025</td><td>NETFLIX.COM</td><td><span class="category-pill">Subscriptions</span></td><td class="amount-neg" style="text-align:right">−£17.99</td></tr>
+      <tr><td class="date-col">10 Jan 2025</td><td>SPOTIFY AB</td><td><span class="category-pill">Subscriptions</span></td><td class="amount-neg" style="text-align:right">−£11.99</td></tr>
+      <tr><td class="date-col">11 Jan 2025</td><td>DELIVEROO</td><td><span class="category-pill">Dining</span></td><td class="amount-neg" style="text-align:right">−£28.40</td></tr>
+      <tr><td class="date-col">12 Jan 2025</td><td>PURE GYM LTD</td><td><span class="category-pill">Health</span></td><td class="amount-neg" style="text-align:right">−£26.99</td></tr>
+      <tr><td class="date-col">14 Jan 2025</td><td>BRITISH GAS</td><td><span class="category-pill">Utilities</span></td><td class="amount-neg" style="text-align:right">−£78.50</td></tr>
+      <tr><td class="date-col">17 Jan 2025</td><td>SAINSBURYS SUPERSTORE</td><td><span class="category-pill">Groceries</span></td><td class="amount-neg" style="text-align:right">−£54.20</td></tr>
+      <tr><td class="date-col">24 Jan 2025</td><td>COUNCIL TAX DIRECT DEBIT</td><td><span class="category-pill">Bills</span></td><td class="amount-neg" style="text-align:right">−£142.00</td></tr>
+      <tr><td class="date-col">28 Jan 2025</td><td>DISHOOM KINGS CROSS</td><td><span class="category-pill">Dining</span></td><td class="amount-neg" style="text-align:right">−£56.20</td></tr>
+      <tr><td class="date-col">07 Feb 2025</td><td>SALARY — NEXUS DIGITAL LTD</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£3,400.00</td></tr>
+      <tr><td class="date-col">14 Feb 2025</td><td>SKETCH LONDON</td><td><span class="category-pill">Dining</span></td><td class="amount-neg" style="text-align:right">−£124.00</td></tr>
+      <tr><td class="date-col">20 Mar 2025</td><td>COUNCIL TAX DIRECT DEBIT</td><td><span class="category-pill">Bills</span></td><td class="amount-neg" style="text-align:right">−£142.00</td></tr>
+      <tr><td class="date-col">25 Mar 2025</td><td>ASOS</td><td><span class="category-pill">Shopping</span></td><td class="amount-neg" style="text-align:right">−£112.00</td></tr>
+      <tr><td class="date-col">20 Apr 2025</td><td>IKEA WEMBLEY</td><td><span class="category-pill">Shopping</span></td><td class="amount-neg" style="text-align:right">−£148.00</td></tr>
+      <tr><td class="date-col">07 May 2025</td><td>SALARY — NEXUS DIGITAL LTD</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£3,400.00</td></tr>
+    </tbody>
+  </table>
+
+  <div class="notice">This is a sample statement generated for demonstration purposes. Click <strong>Load Data into Analyser</strong> to import all 113 transactions and explore with SQL queries and AI analysis.</div>
+
+  <div class="footer">
+    Barclays Bank UK PLC · Authorised by the Prudential Regulation Authority<br>
+    Registered in England &amp; Wales (No. 9740322) · Registered Office: 1 Churchill Place, London E14 5HP
+  </div>
+</div>
+
+</body>
+</html>

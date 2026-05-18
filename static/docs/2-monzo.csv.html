@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monzo — Priya Sharma — Statement Sep 2024–Feb 2025</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f7f7f9; color: #1a1a1a; font-size: 13px; }
+
+  .bank-header { background: #1a1a2e; color: #fff; padding: 22px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .bank-logo { font-size: 24px; font-weight: 800; letter-spacing: -.5px; color: #FF5B5B; }
+  .bank-header-right { text-align: right; font-size: 11px; opacity: .8; line-height: 1.8; }
+
+  .account-bar { background: #14142a; color: #fff; padding: 14px 32px; display: flex; gap: 40px; font-size: 12px; }
+  .account-bar__item { display: flex; flex-direction: column; gap: 2px; }
+  .account-bar__label { opacity: .55; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+  .account-bar__value { font-weight: 600; font-size: 13px; }
+
+  .body { padding: 24px 32px; max-width: 900px; margin: 0 auto; }
+
+  .section-title { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #FF5B5B; font-weight: 700; border-bottom: 2px solid #FF5B5B; padding-bottom: 6px; margin-bottom: 14px; margin-top: 28px; }
+
+  .summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .summary-card { background: #fff; border: 1px solid #e8e8ee; border-radius: 8px; padding: 14px 18px; }
+  .summary-card__label { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #888; margin-bottom: 6px; }
+  .summary-card__value { font-size: 20px; font-weight: 700; }
+  .summary-card__value.positive { color: #00a86b; }
+  .summary-card__value.negative { color: #e02020; }
+
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e8e8ee; border-radius: 8px; overflow: hidden; }
+  thead { background: #f5f5fa; }
+  th { padding: 10px 12px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #777; font-weight: 600; border-bottom: 1px solid #e8e8ee; }
+  td { padding: 9px 12px; border-bottom: 1px solid #f5f5f5; font-size: 12px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fef5f5; }
+  .amount-neg { color: #e02020; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .amount-pos { color: #00a86b; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .category-pill { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; background: #fff0f0; color: #FF5B5B; font-weight: 600; }
+  .date-col { color: #777; font-size: 11px; white-space: nowrap; }
+
+  .footer { text-align: center; font-size: 10px; color: #aaa; margin: 28px 0 12px; line-height: 1.7; }
+  .notice { background: #fff8f0; border-left: 3px solid #FF5B5B; padding: 10px 14px; border-radius: 4px; font-size: 11px; color: #555; margin-top: 16px; }
+
+  .persona-card { background: #fff; border: 1px solid #e8e8ee; border-radius: 8px; padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start; margin-bottom: 4px; }
+  .persona-avatar { width: 42px; height: 42px; border-radius: 50%; background: #FF5B5B; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 18px; flex-shrink: 0; }
+  .persona-details { line-height: 1.6; }
+  .persona-name { font-weight: 700; font-size: 14px; }
+  .persona-sub { font-size: 11px; color: #777; }
+</style>
+</head>
+<body>
+
+<div class="bank-header">
+  <div class="bank-logo">monzo</div>
+  <div class="bank-header-right">
+    Personal Account — Statement<br>
+    01 September 2024 – 28 February 2025<br>
+    Account: ****7732
+  </div>
+</div>
+
+<div class="account-bar">
+  <div class="account-bar__item">
+    <span class="account-bar__label">Account Holder</span>
+    <span class="account-bar__value">Priya Sharma</span>
+  </div>
+  <div class="account-bar__item">
+    <span class="account-bar__label">Account Type</span>
+    <span class="account-bar__value">Monzo Personal</span>
+  </div>
+  <div class="account-bar__item">
+    <span class="account-bar__label">Opening Balance</span>
+    <span class="account-bar__value">£312.44</span>
+  </div>
+  <div class="account-bar__item">
+    <span class="account-bar__label">Closing Balance</span>
+    <span class="account-bar__value">£184.71</span>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="section-title">Account Holder Profile</div>
+  <div class="persona-card">
+    <div class="persona-avatar">P</div>
+    <div class="persona-details">
+      <div class="persona-name">Priya Sharma, 22</div>
+      <div class="persona-sub">Graduate student, University of Manchester · Part-time at JD Sports (£820/month) · Student loan: £4,420 (Sept)</div>
+      <div class="persona-sub" style="margin-top:4px">Typical spending: Aldi, Lidl, Deliveroo, ASOS, Wetherspoons, SU bar, Netflix, Spotify</div>
+    </div>
+  </div>
+
+  <div class="section-title">Period Summary</div>
+  <div class="summary-row">
+    <div class="summary-card">
+      <div class="summary-card__label">Total Income</div>
+      <div class="summary-card__value positive">+£9,340.00</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card__label">Total Expenditure</div>
+      <div class="summary-card__value negative">−£9,467.73</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card__label">Net Position</div>
+      <div class="summary-card__value negative">−£127.73</div>
+    </div>
+  </div>
+
+  <div class="section-title">Recent Transactions</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th style="text-align:right">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="date-col">01 Sep 2024</td><td>Student loan — SLC</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£4,420.00</td></tr>
+      <tr><td class="date-col">02 Sep 2024</td><td>Aldi</td><td><span class="category-pill">Groceries</span></td><td class="amount-neg" style="text-align:right">−£24.60</td></tr>
+      <tr><td class="date-col">04 Sep 2024</td><td>McDonald's</td><td><span class="category-pill">Dining</span></td><td class="amount-neg" style="text-align:right">−£6.49</td></tr>
+      <tr><td class="date-col">06 Sep 2024</td><td>ASOS</td><td><span class="category-pill">Shopping</span></td><td class="amount-neg" style="text-align:right">−£54.99</td></tr>
+      <tr><td class="date-col">07 Sep 2024</td><td>Spotify</td><td><span class="category-pill">Subscriptions</span></td><td class="amount-neg" style="text-align:right">−£11.99</td></tr>
+      <tr><td class="date-col">08 Sep 2024</td><td>Netflix</td><td><span class="category-pill">Subscriptions</span></td><td class="amount-neg" style="text-align:right">−£17.99</td></tr>
+      <tr><td class="date-col">01 Oct 2024</td><td>Part-time wages — JD Sports</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£820.00</td></tr>
+      <tr><td class="date-col">08 Oct 2024</td><td>Deliveroo</td><td><span class="category-pill">Dining</span></td><td class="amount-neg" style="text-align:right">−£21.60</td></tr>
+      <tr><td class="date-col">12 Oct 2024</td><td>Shein</td><td><span class="category-pill">Shopping</span></td><td class="amount-neg" style="text-align:right">−£38.00</td></tr>
+      <tr><td class="date-col">20 Oct 2024</td><td>SU Halloween Night</td><td><span class="category-pill">Entertainment</span></td><td class="amount-neg" style="text-align:right">−£12.00</td></tr>
+      <tr><td class="date-col">01 Nov 2024</td><td>Part-time wages — JD Sports</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£820.00</td></tr>
+      <tr><td class="date-col">25 Nov 2024</td><td>ASOS</td><td><span class="category-pill">Shopping</span></td><td class="amount-neg" style="text-align:right">−£67.00</td></tr>
+      <tr><td class="date-col">14 Feb 2025</td><td>Slug and Lettuce — Valentines</td><td><span class="category-pill">Dining</span></td><td class="amount-neg" style="text-align:right">−£38.00</td></tr>
+      <tr><td class="date-col">01 Feb 2025</td><td>Part-time wages — JD Sports</td><td><span class="category-pill">Income</span></td><td class="amount-pos" style="text-align:right">+£820.00</td></tr>
+    </tbody>
+  </table>
+
+  <div class="notice">Sample statement for demonstration. Click <strong>Load Data into Analyser</strong> to import all 130 transactions and run SQL queries or AI analysis.</div>
+
+  <div class="footer">
+    Monzo Bank Limited · Authorised by the Prudential Regulation Authority<br>
+    Registered in England &amp; Wales (No. 09446231) · Registered Office: Broadwalk House, 5 Appold St, London EC2A 2AG
+  </div>
+</div>
+
+</body>
+</html>
