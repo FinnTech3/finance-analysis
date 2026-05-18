@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Finn's Strategy — Quantitative Research Memo, May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="_template.css"/>
+</head>
+<body>
+<div class="page">
+  <span class="doc-tag doc-tag--own">▣ Original research &middot; authored by Finn Lakin &middot; paper-traded</span>
+
+  <div class="doc-header">
+    <div class="doc-issuer">Finn Lakin &middot; Independent Quantitative Research</div>
+    <h1 class="doc-title">Finn's Strategy &mdash; Multi-Regime Futures Research Memo</h1>
+    <div class="doc-sub">Forward-test period: 6 February &mdash; 25 April 2026 &middot; Alpaca Paper Trading API</div>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">Disclosure — please read first</div>
+    <p>All performance shown in this memo derives from a <strong>paper-traded</strong> forward test executed via the Alpaca Paper Trading API. No real capital was at risk. Order timing, slippage and fill assumptions reflect Alpaca&rsquo;s paper-trading simulation, which models live market data but cannot replicate real-execution liquidity or counter-party risk. Past simulated performance is not indicative of future real-world results. This memo is published for educational and research purposes only.</p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">Headline result &mdash; three months forward-tested</div>
+    <div class="doc-stats">
+      <div class="doc-stat">
+        <div class="doc-stat__val">+156%</div>
+        <div class="doc-stat__lbl">Net Return (paper)</div>
+      </div>
+      <div class="doc-stat">
+        <div class="doc-stat__val">86%</div>
+        <div class="doc-stat__lbl">Win Rate (6/7 trades)</div>
+      </div>
+      <div class="doc-stat">
+        <div class="doc-stat__val">2.84</div>
+        <div class="doc-stat__lbl">Sharpe Ratio</div>
+      </div>
+    </div>
+    <p>Benchmark: S&amp;P 500 Index (SPX) over the same window. The framework also reports excess return over a 50/50 buy-and-hold of SPX and a 1-month T-bill ladder.</p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">The research question</div>
+    <p>Can a single framework trade S&amp;P&nbsp;500 E-mini futures profitably across multiple, shifting market regimes &mdash; without being re-tuned for each one? Most strategies live and die with the regime they were built for. The hypothesis here: instead of selecting <em>one</em> strategy, run eleven distinct sub-strategies concurrently and let a meta-layer dynamically weight each one based on the regime it actually fits.</p>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">Eleven sub-strategies (regime mapping)</div>
+    <ul class="doc-bullets">
+      <li><strong>Macro Regime Fusion</strong> &mdash; Fed policy, yield curve, DXY, geopolitical-risk index (all regimes)</li>
+      <li><strong>ICT Smart Money Concepts</strong> &mdash; order blocks, FVGs, liquidity sweeps, OTE (trending)</li>
+      <li><strong>Options Flow Sentiment</strong> &mdash; unusual activity, put/call, dark-pool prints (all regimes)</li>
+      <li><strong>Trend Following (EMA Cross)</strong> &mdash; 21/55 EMA with ATR sizing (trending)</li>
+      <li><strong>Statistical Arbitrage</strong> &mdash; ES/NQ &amp; ES/RTY pairs, z-score reversion (mean-reverting)</li>
+      <li><strong>VWAP Reversion</strong> &mdash; intraday session VWAP fade (range-bound)</li>
+      <li><strong>Earnings Event Positioning</strong> &mdash; asymmetric setups around index-constituent earnings (event-driven)</li>
+      <li><strong>Volatility Breakout</strong> &mdash; VIX-triggered ATR-expansion entries (high-vol)</li>
+      <li><strong>Sector Rotation Overlay</strong> &mdash; sector relative-strength (weighting overlay)</li>
+      <li><strong>Tail-Risk Hedging</strong> &mdash; OTM put spread &mdash; 3% NAV premium/month (insurance)</li>
+      <li><strong>Seasonality Overlay</strong> &mdash; calendar-based bias adjustment (overlay)</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">Largest contributors (P&amp;L attribution)</div>
+    <p>A short position entered before the Iran escalation in Q1&nbsp;2026 produced the largest single-position gain &mdash; over <strong>+91%</strong>. A long entered at the 200-day moving average using ICT Optimal Trade Entry contributed a further <strong>+36%</strong>. Both signals were generated and executed live during market hours via the Alpaca paper API and are logged in the trade journal.</p>
+    <div class="doc-quote">&ldquo;What the test was designed to show is not that one strategy works, but that a population of strategies, intelligently weighted against the regime the market is actually in, can outperform any single one of them across the cycle.&rdquo;</div>
+  </div>
+
+  <div class="doc-section">
+    <div class="doc-section-title">Architecture (one paragraph)</div>
+    <p>Signal generation runs in Python (pandas/numpy). Macro intelligence and regime labelling are delegated to the Claude API (claude-sonnet-4-6) with prompt caching enabled to reduce per-request cost. Strategy weighting uses a custom Bayesian model in R (FactoMineR); execution flows through Alpaca&rsquo;s paper API. The dashboard you are looking at right now &mdash; Finn&rsquo;s SQL Finance Analyser &mdash; reads the same DuckDB store the live framework writes to.</p>
+  </div>
+
+  <p class="doc-source">
+    Source: This memo is the author&rsquo;s own work, summarising the Finn&rsquo;s Strategy research framework. Code repository: <a href="https://github.com/FinnTech3/finns-strategy" target="_blank" rel="noopener">github.com/FinnTech3/finns-strategy</a>. Trade log and full methodology available on request. Structural format modelled on the public-company filings preceding this document in the doc strip &mdash; presented for read-alike clarity, not to imply equivalence with a regulated filing.
+  </p>
+</div>
+</body>
+</html>

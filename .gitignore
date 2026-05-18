@@ -1,0 +1,46 @@
+# ============================================================
+#  SQL Finance Analyser — .gitignore
+# ============================================================
+
+# Secrets — NEVER commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# User data — local-only by design
+data/finance.duckdb
+data/finance.duckdb.wal
+data/raw/
+data/uploads/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# Logs
+*.log
+
+# Build artefacts
+dist/
+build/
+.cache/

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance Analyser — Finn Lakin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07070f; --surface: #0c0d1a; --surface-2: #111220;
+      --border: #181928; --border-2: #22243a;
+      --text: #e3e5f0; --text-2: #7880a0; --text-3: #3d4060;
+      --gold: #c9a553; --gold-dim: rgba(201,165,83,.12);
+      --blue: #4f7ef7; --blue-dim: rgba(79,126,247,.10);
+      --green: #4caf82; --red: #e05c5c;
+      --mono: 'Times New Roman', Times, serif;
+      --display: 'Cormorant Garamond', Georgia, serif;
+      --ease: cubic-bezier(.4,0,.2,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { background: var(--bg); color: var(--text); font-family: var(--mono); line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ── Header ── */
+    .header { display: flex; align-items: center; gap: 1.2rem; padding: .9rem 2rem; border-bottom: 1px solid var(--border); background: rgba(7,7,15,.92); backdrop-filter: blur(16px); position: sticky; top: 0; z-index: 100; }
+    .header__logo { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+    .header__title { font-family: var(--display); font-size: 1.3rem; font-weight: 700; color: var(--text); }
+    .header__dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse 2.5s ease-in-out infinite; flex-shrink: 0; }
+    .header__status { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-left: auto; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+
+    /* ── Document Strip ── */
+    .doc-strip { border-bottom: 1px solid var(--border); background: var(--surface); padding: 1rem 1.5rem; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--border-2) transparent; }
+    .doc-strip::-webkit-scrollbar { height: 3px; }
+    .doc-strip::-webkit-scrollbar-thumb { background: var(--border-2); }
+    .doc-strip-label { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-3); margin-bottom: .8rem; }
+    .doc-strip-inner { display: flex; gap: .75rem; align-items: flex-start; min-width: max-content; }
+
+    .doc-card { width: 148px; flex-shrink: 0; background: var(--bg); border: 1px solid var(--border-2); border-radius: 2px; cursor: pointer; transition: border-color .2s, background .2s; overflow: hidden; position: relative; }
+    .doc-card:hover { border-color: var(--gold); background: var(--surface-2); }
+    .doc-card:hover .doc-card__thumb { opacity: .9; }
+
+    .doc-card__thumb { height: 90px; position: relative; overflow: hidden; background: #fff; display: flex; flex-direction: column; padding: 6px 7px; gap: 3px; transition: opacity .2s; }
+    .doc-card__thumb-line { height: 2px; border-radius: 1px; background: #e0ddd8; }
+    .doc-card__thumb-line.h { height: 5px; background: #1a1a2e; width: 60%; }
+    .doc-card__thumb-line.gold { background: #c9a553; width: 40%; height: 3px; }
+    .doc-card__thumb-line.dark { background: #2d3561; }
+    .doc-card__thumb-line.short { width: 55%; }
+    .doc-card__thumb-line.shorter { width: 35%; }
+    .doc-card__thumb-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-top: 4px; }
+    .doc-card__thumb-table span { height: 2px; background: #e0ddd8; border-radius: 1px; }
+    .doc-card__thumb-table span:first-child { background: #aaa; }
+
+    .doc-card__badge { position: absolute; top: 5px; right: 5px; font-size: 6.5pt; font-family: var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 1px 5px; border-radius: 1px; }
+    .badge-macro { background: rgba(79,126,247,.2); color: #4f7ef7; }
+    .badge-wealth { background: rgba(201,165,83,.2); color: #c9a553; }
+    .badge-trading { background: rgba(76,175,130,.2); color: #4caf82; }
+    .badge-pe { background: rgba(224,92,92,.15); color: #e05c5c; }
+    .badge-fund { background: rgba(139,148,158,.15); color: #8b949e; }
+    .badge-quant { background: rgba(201,165,83,.25); color: #c9a553; border: 1px solid rgba(201,165,83,.3); }
+
+    .doc-card__info { padding: .55rem .65rem .65rem; }
+    .doc-card__title { font-size: .72rem; font-weight: 600; color: var(--text); line-height: 1.25; margin-bottom: .2rem; }
+    .doc-card__meta { font-size: .6rem; color: var(--text-3); letter-spacing: .04em; }
+
+    .doc-card__load { display: none; position: absolute; inset: 0; background: rgba(7,7,15,.7); backdrop-filter: blur(4px); align-items: center; justify-content: center; }
+    .doc-card:hover .doc-card__load { display: flex; }
+    .doc-card__load span { font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,165,83,.4); padding: .3rem .7rem; border-radius: 1px; }
+
+    /* Analyse Your Own card */
+    .doc-card--add { background: #000; border-color: #1a1a1a; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 148px; gap: .5rem; transition: border-color .2s, background .2s; }
+    .doc-card--add:hover { border-color: var(--gold); background: #0a0a0a; }
+    .doc-card--add .plus { font-size: 2rem; color: var(--text-3); line-height: 1; font-weight: 300; transition: color .2s; }
+    .doc-card--add:hover .plus { color: var(--gold); }
+    .doc-card--add .add-label { font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); text-align: center; transition: color .2s; }
+    .doc-card--add:hover .add-label { color: var(--text-2); }
+
+    /* ── Layout ── */
+    .main { display: grid; grid-template-columns: 200px 1fr; height: calc(100vh - 106px); overflow: hidden; }
+    .sidebar { border-right: 1px solid var(--border); padding: 1.2rem 0; display: flex; flex-direction: column; gap: .2rem; overflow-y: auto; }
+    .sidebar__label { font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-3); padding: .5rem 1.3rem; margin-top: .4rem; }
+    .sidebar__item { display: flex; align-items: center; gap: .65rem; padding: .55rem 1.3rem; font-size: .7rem; letter-spacing: .06em; color: var(--text-2); background: none; border: none; width: 100%; text-align: left; transition: color .2s, background .2s; position: relative; }
+    .sidebar__item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--gold); opacity: 0; transition: opacity .2s; }
+    .sidebar__item:hover { color: var(--text); background: var(--surface); }
+    .sidebar__item.active { color: var(--text); background: var(--surface); }
+    .sidebar__item.active::before { opacity: 1; }
+    .sidebar__icon { width: 13px; height: 13px; opacity: .5; flex-shrink: 0; }
+    .sidebar__item.active .sidebar__icon { opacity: 1; }
+
+    /* ── Content ── */
+    .content { overflow-y: auto; padding: 1.8rem; display: flex; flex-direction: column; gap: 1.4rem; }
+    .panel { display: none; flex-direction: column; gap: 1.4rem; }
+    .panel.active { display: flex; }
+    .panel-title { font-family: var(--display); font-size: 1.8rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+    .panel-sub { font-size: .8rem; color: var(--text-2); margin-top: .25rem; }
+
+    /* ── Stats ── */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1px; background: var(--border); }
+    .stat-box { background: var(--surface); padding: 1.1rem 1.3rem; display: flex; flex-direction: column; gap: .25rem; transition: background .2s; }
+    .stat-box:hover { background: var(--surface-2); }
+    .stat-box__val { font-family: var(--display); font-size: 1.7rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .stat-box__label { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); }
+
+    /* ── Two col ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+    .card { background: var(--surface); padding: 1.3rem; }
+    .card__title { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: .9rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+
+    /* ── Bar chart ── */
+    .bar-list { display: flex; flex-direction: column; gap: .5rem; }
+    .bar-item__label { display: flex; justify-content: space-between; font-size: .65rem; color: var(--text-2); margin-bottom: .2rem; }
+    .bar-item__track { height: 3px; background: var(--border-2); border-radius: 2px; overflow: hidden; }
+    .bar-item__fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width .8s var(--ease); }
+    .month-list { display: flex; flex-direction: column; gap: .35rem; }
+    .month-row { display: grid; grid-template-columns: 4.5rem 1fr 4rem; align-items: center; gap: .5rem; font-size: .65rem; }
+    .month-row__label { color: var(--text-3); }
+    .month-row__bar { height: 2px; background: var(--border-2); border-radius: 1px; overflow: hidden; }
+    .month-row__fill { height: 100%; border-radius: 1px; }
+    .month-row__val { text-align: right; color: var(--text-2); }
+    .month-row__val.positive { color: var(--green); }
+    .month-row__val.negative { color: var(--red); }
+
+    /* ── Query ── */
+    .query-form { display: flex; gap: .5rem; }
+    .query-input { flex: 1; background: var(--surface); border: 1px solid var(--border-2); border-radius: 2px; padding: .7rem .9rem; font-family: var(--mono); font-size: .8rem; color: var(--text); outline: none; transition: border-color .2s; }
+
+    /* ── Query suggestion chips (tutorial bootstrap) ── */
+    .query-suggestions { margin-top: .8rem; }
+    .query-suggestions__label { display: flex; align-items: center; gap: .5rem; font-family: var(--mono); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); margin-bottom: .55rem; }
+    .query-suggestions__label::before, .query-suggestions__label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .query-chips { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: .45rem; }
+    .query-chip { display: flex; align-items: flex-start; gap: .55rem; background: var(--surface); border: 1px solid var(--border-2); border-left: 2px solid transparent; border-radius: 2px; padding: .65rem .8rem; font-family: var(--mono); font-size: .72rem; color: var(--text-2); text-align: left; cursor: pointer; transition: all .2s; line-height: 1.4; }
+    .query-chip:hover { border-color: var(--gold); border-left-color: var(--gold); background: var(--surface-2); color: var(--text); transform: translateX(2px); }
+    .query-chip__num { font-size: .56rem; letter-spacing: .12em; color: var(--gold); flex-shrink: 0; min-width: 1rem; padding-top: .1rem; }
+
+    /* ── Tutorial overlay: step-by-step walk-through ── */
+    .tutorial-walkthrough { background: linear-gradient(180deg, var(--surface) 0%, rgba(201,165,83,0.02) 100%); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 2px; padding: 1.4rem 1.6rem; margin-top: 1.2rem; }
+    .tutorial-step { display: flex; gap: 1rem; padding: .9rem 0; opacity: 0; transform: translateY(8px); transition: opacity .45s var(--ease), transform .45s var(--ease); border-bottom: 1px solid var(--border); }
+    .tutorial-step:last-child { border-bottom: none; }
+    .tutorial-step.tutorial-step--visible { opacity: 1; transform: translateY(0); }
+    .tutorial-step__num { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; flex-shrink: 0; background: var(--gold-dim); border: 1px solid rgba(201,165,83,.4); border-radius: 50%; font-family: var(--mono); font-size: .66rem; color: var(--gold); font-weight: 600; }
+    .tutorial-step__body { flex: 1; }
+    .tutorial-step__title { font-family: var(--mono); font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: .35rem; }
+    .tutorial-step__title.tutorial-step__title--done::after { content: ' ✓'; color: var(--green); }
+    .tutorial-step__detail { font-size: .82rem; color: var(--text-2); line-height: 1.65; }
+    .tutorial-step__detail code { font-family: var(--mono); font-size: .76em; background: var(--surface-2); padding: .04rem .35rem; border-radius: 2px; color: var(--blue); }
+    .tutorial-step__detail strong { color: var(--text); }
+    .tutorial-typing { display: inline-block; min-height: 1.3em; padding: .35rem .55rem; background: var(--surface-2); border: 1px solid var(--border-2); border-radius: 2px; font-family: var(--mono); font-size: .76rem; color: var(--text); margin-top: .35rem; }
+    .tutorial-typing::after { content: '|'; color: var(--gold); animation: blink 0.9s infinite; }
+    @keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+    .tutorial-explainer { background: var(--surface-2); border-left: 2px solid var(--blue); padding: .8rem 1rem; margin-top: .6rem; font-size: .8rem; color: var(--text-2); line-height: 1.7; border-radius: 0 2px 2px 0; }
+    .tutorial-explainer strong { color: var(--text); font-weight: 600; }
+    .tutorial-explainer__label { display: inline-block; font-family: var(--mono); font-size: .55rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: .3rem; }
+    .query-input::placeholder { color: var(--text-3); }
+    .query-input:focus { border-color: var(--gold); }
+    .query-btn { padding: .7rem 1.3rem; background: var(--gold-dim); border: 1px solid rgba(201,165,83,.35); border-radius: 2px; color: var(--gold); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; transition: background .2s, border-color .2s; white-space: nowrap; }
+    .query-btn:hover { background: rgba(201,165,83,.2); border-color: var(--gold); }
+    .query-btn:disabled { opacity: .4; pointer-events: none; }
+    .sql-block { background: var(--surface-2); border: 1px solid var(--border-2); border-radius: 2px; padding: .9rem 1.1rem; font-size: .72rem; color: var(--blue); white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+    .results-table-wrap { overflow-x: auto; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: .7rem; }
+    thead th { background: var(--surface-2); padding: .55rem .9rem; text-align: left; font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); border-bottom: 1px solid var(--border-2); white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface); }
+    tbody td { padding: .5rem .9rem; color: var(--text-2); }
+    .analysis-out { background: var(--surface); border: 1px solid var(--border-2); border-left: 3px solid var(--gold); padding: 1.3rem 1.5rem; }
+    .analysis-p { font-size: .82rem; color: var(--text-2); line-height: 1.8; margin-bottom: .55rem; }
+    .analysis-p:last-child { margin-bottom: 0; }
+    .analysis-h2 { font-family: var(--display); font-size: 1.05rem; font-weight: 700; color: var(--text); margin: .9rem 0 .35rem; }
+    .analysis-h3 { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin: .8rem 0 .3rem; }
+    .analysis-li { font-size: .82rem; color: var(--text-2); line-height: 1.75; padding-left: 1.1rem; position: relative; margin-bottom: .22rem; }
+    .analysis-li::before { content: '—'; position: absolute; left: 0; color: var(--gold); opacity: .65; }
+    .analysis-spacer { height: .35rem; }
+    .analysis-code { background: var(--surface-2); border: 1px solid var(--border-2); padding: .06rem .38rem; border-radius: 2px; font-family: var(--mono); font-size: .78em; color: var(--blue); }
+    .analysis-out strong { color: var(--text); font-weight: 600; }
+
+    /* ── Import ── */
+    .drop-zone { border: 1px dashed var(--border-2); border-radius: 3px; padding: 2.5rem 2rem; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; position: relative; }
+    .drop-zone.drag-over { border-color: var(--gold); background: var(--gold-dim); }
+    .drop-zone input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .drop-zone__label { font-size: .8rem; color: var(--text-2); }
+    .drop-zone__sub { font-size: .65rem; color: var(--text-3); margin-top: .25rem; }
+    .import-narrative { background: var(--surface); border: 1px solid var(--border-2); border-left: 3px solid var(--green); padding: 1.3rem; font-size: .82rem; color: var(--text-2); line-height: 1.8; }
+
+    /* ── Utility ── */
+    .spinner { display: inline-block; width: 13px; height: 13px; border: 1.5px solid var(--border-2); border-top-color: var(--gold); border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: .35rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-row { display: flex; align-items: center; gap: .4rem; font-size: .7rem; color: var(--text-3); padding: .5rem 0; }
+    .error-box { background: rgba(224,92,92,.08); border: 1px solid rgba(224,92,92,.25); border-radius: 2px; padding: .8rem 1rem; font-size: .76rem; color: var(--red); }
+    .empty { display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: 2.5rem; color: var(--text-3); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; text-align: center; }
+
+    /* ── Doc Preview Modal ── */
+    .doc-modal { position: fixed; inset: 0; z-index: 500; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: 0; transition: opacity .3s var(--ease); }
+    .doc-modal.open { opacity: 1; pointer-events: all; }
+    .doc-modal__backdrop { position: absolute; inset: 0; background: rgba(7,7,15,.9); backdrop-filter: blur(12px); cursor: pointer; }
+    .doc-modal__panel { position: relative; z-index: 1; width: min(1100px, 98vw); height: 94vh; background: var(--surface); border: 1px solid var(--border-2); border-radius: 2px; display: flex; flex-direction: column; overflow: hidden; transform: translateY(14px) scale(.985); transition: transform .35s var(--ease); box-shadow: 0 40px 120px rgba(0,0,0,.7); }
+    .doc-modal.open .doc-modal__panel { transform: translateY(0) scale(1); }
+    .doc-modal__toolbar { display: flex; align-items: center; justify-content: space-between; padding: .8rem 1.2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; gap: .8rem; }
+    .doc-modal__title { font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); flex: 1; }
+    .doc-modal__actions { display: flex; align-items: center; gap: .8rem; }
+    .doc-modal__load-btn { display: inline-flex; align-items: center; gap: .35rem; padding: .4rem .9rem; background: var(--gold-dim); border: 1px solid rgba(201,165,83,.35); border-radius: 2px; color: var(--gold); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; font-family: var(--mono); cursor: pointer; transition: background .2s; }
+    .doc-modal__load-btn:hover { background: rgba(201,165,83,.2); }
+    .doc-modal__close { background: none; border: none; cursor: pointer; color: var(--text-3); display: flex; align-items: center; padding: 3px; transition: color .2s; }
+    .doc-modal__close:hover { color: var(--text); }
+    .doc-modal__body { flex: 1; position: relative; overflow: hidden; }
+    .doc-modal__loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem; font-size: .65rem; letter-spacing: .12em; color: var(--text-3); }
+    .doc-modal__frame { width: 100%; height: 100%; border: none; opacity: 0; transition: opacity .3s; background: #f8f7f4; }
+
+    @media (max-width: 680px) {
+      .main { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <span class="header__logo">FL</span>
+  <span class="header__title">Finance Analyser</span>
+  <span class="header__dot"></span>
+  <span class="header__status" id="headerStatus">Initialising…</span>
+</header>
+
+<!-- Document Strip -->
+<div class="doc-strip">
+  <div class="doc-strip-label">Real public financial filings &mdash; click to preview · all primary sources linked</div>
+  <div class="doc-strip-inner">
+
+    <!-- Doc 1 — Berkshire Hathaway (real public filing) -->
+    <div class="doc-card" onclick="openDoc(0)">
+      <div class="doc-card__thumb" style="background:#f6f1e6">
+        <div style="height:8px;background:#1a1a1a;margin:-6px -7px 4px;display:flex;align-items:center;padding:0 7px"><span style="font-size:5.5px;color:#f6f1e6;font-family:serif;letter-spacing:.1em">BERKSHIRE HATHAWAY</span></div>
+        <div class="doc-card__thumb-line" style="background:#d4c8a8;width:85%"></div>
+        <div class="doc-card__thumb-line" style="background:#1a1a1a;width:55%;height:3px"></div>
+        <div class="doc-card__thumb-line" style="background:#d4c8a8;width:70%"></div>
+        <div class="doc-card__thumb-line" style="background:#d4c8a8;width:60%"></div>
+        <div class="doc-card__thumb-table"><span style="background:#1a1a1a"></span><span style="background:#d4c8a8"></span><span style="background:#d4c8a8"></span></div>
+      </div>
+      <div class="doc-card__badge badge-fund" style="background:rgba(26,26,26,.85);color:#f6f1e6">Real</div>
+      <div class="doc-card__load"><span>Preview</span></div>
+      <div class="doc-card__info">
+        <div class="doc-card__title">Berkshire Hathaway</div>
+        <div class="doc-card__meta">Annual Letter · 2024 · Buffett</div>
+      </div>
+    </div>
+
+    <!-- Doc 2 — JPMorgan Chase (real public filing) -->
+    <div class="doc-card" onclick="openDoc(1)">
+      <div class="doc-card__thumb" style="background:#0f1923">
+        <div style="height:8px;background:#1c2b3a;margin:-6px -7px 4px;display:flex;align-items:center;padding:0 7px"><span style="font-size:6px;color:#58a6ff;font-family:sans-serif;letter-spacing:.08em">JPMORGAN CHASE</span></div>
+        <div class="doc-card__thumb-line" style="background:#1c2b3a;width:85%"></div>
+        <div class="doc-card__thumb-line" style="background:#58a6ff;width:60%;height:3px"></div>
+        <div class="doc-card__thumb-line" style="background:#1c2b3a;width:75%"></div>
+        <div class="doc-card__thumb-line" style="background:#1c2b3a;width:55%"></div>
+        <div class="doc-card__thumb-table"><span style="background:#58a6ff"></span><span style="background:#1c2b3a"></span><span style="background:#1c2b3a"></span></div>
+      </div>
+      <div class="doc-card__badge badge-wealth" style="background:rgba(88,166,255,.18);color:#58a6ff">Real</div>
+      <div class="doc-card__load"><span>Preview</span></div>
+      <div class="doc-card__info">
+        <div class="doc-card__title">JPMorgan Chase</div>
+        <div class="doc-card__meta">CEO Letter · 2024 · Dimon</div>
+      </div>
+    </div>
+
+    <!-- Doc 3 — BlackRock (real public filing) -->
+    <div class="doc-card" onclick="openDoc(2)">
+      <div class="doc-card__thumb" style="background:#0d1117">
+        <div style="height:8px;background:#161b22;margin:-6px -7px 4px;display:flex;align-items:center;padding:0 7px"><span style="font-size:6px;color:#000;background:#fff;padding:1px 4px;font-family:sans-serif;letter-spacing:.08em">BLACKROCK</span></div>
+        <div class="doc-card__thumb-line" style="background:#21262d;width:90%"></div>
+        <div class="doc-card__thumb-line" style="background:#3fb950;width:55%;height:2px"></div>
+        <div class="doc-card__thumb-line" style="background:#f85149;width:30%;height:2px"></div>
+        <div class="doc-card__thumb-line" style="background:#21262d;width:80%"></div>
+        <div class="doc-card__thumb-table"><span style="background:#3fb950"></span><span style="background:#21262d"></span><span style="background:#21262d"></span></div>
+      </div>
+      <div class="doc-card__badge badge-trading" style="background:rgba(63,185,80,.18);color:#3fb950">Real</div>
+      <div class="doc-card__load"><span>Preview</span></div>
+      <div class="doc-card__info">
+        <div class="doc-card__title">BlackRock</div>
+        <div class="doc-card__meta">Annual Report 10-K · 2024</div>
+      </div>
+    </div>
+
+    <!-- Doc 4 — Apple Inc. (real public filing) -->
+    <div class="doc-card" onclick="openDoc(3)">
+      <div class="doc-card__thumb" style="background:#faf9f7">
+        <div style="height:5px;background:#1c2b3a;margin:-6px -7px 5px"></div>
+        <div class="doc-card__thumb-line" style="background:#999;width:70%"></div>
+        <div class="doc-card__thumb-line" style="background:#1c2b3a;width:50%;height:3px"></div>
+        <div class="doc-card__thumb-line" style="background:#ccc;width:80%"></div>
+        <div class="doc-card__thumb-line" style="background:#ddd;width:60%"></div>
+        <div class="doc-card__thumb-table"><span style="background:#1c2b3a"></span><span style="background:#ccc"></span><span style="background:#ccc"></span></div>
+      </div>
+      <div class="doc-card__badge badge-pe" style="background:rgba(28,43,58,.85);color:#fff">Real</div>
+      <div class="doc-card__load"><span>Preview</span></div>
+      <div class="doc-card__info">
+        <div class="doc-card__title">Apple Inc.</div>
+        <div class="doc-card__meta">Form 10-K · FY2024</div>
+      </div>
+    </div>
+
+    <!-- Doc 5 — Federal Reserve FOMC (real public release) -->
+    <div class="doc-card" onclick="openDoc(4)">
+      <div class="doc-card__thumb" style="background:#1a1a2e">
+        <div style="height:10px;background:linear-gradient(135deg,#1a1a2e,#2d3561);margin:-6px -7px 4px;display:flex;align-items:center;padding:0 7px"><span style="font-size:5px;color:#c9a553;font-family:serif;letter-spacing:.1em">FEDERAL RESERVE FOMC</span></div>
+        <div class="doc-card__thumb-line" style="background:#2d3561;width:80%"></div>
+        <div class="doc-card__thumb-line" style="background:#c9a553;width:45%;height:2px"></div>
+        <div class="doc-card__thumb-line" style="background:#2d3561;width:65%"></div>
+        <div class="doc-card__thumb-table"><span style="background:#c9a553"></span><span style="background:#2d3561"></span><span style="background:#2d3561"></span></div>
+      </div>
+      <div class="doc-card__badge badge-macro" style="background:rgba(201,165,83,.2);color:#c9a553">Real</div>
+      <div class="doc-card__load"><span>Preview</span></div>
+      <div class="doc-card__info">
+        <div class="doc-card__title">Federal Reserve</div>
+        <div class="doc-card__meta">FOMC Statement · May 2026</div>
+      </div>
+    </div>
+
+    <!-- Doc 6 — Finn's Strategy (clearly labelled own work) -->
+    <div class="doc-card" onclick="openDoc(5)">
+      <div class="doc-card__thumb" style="background:#07070f">
+        <div style="height:8px;background:#0c0d1a;margin:-6px -7px 4px;display:flex;align-items:center;padding:0 7px"><span style="font-size:5.5px;color:#c9a553;font-family:serif;letter-spacing:.08em">Finn&rsquo;s Strategy</span></div>
+        <div class="doc-card__thumb-line" style="background:#181928;width:85%"></div>
+        <div class="doc-card__thumb-line" style="background:#c9a553;width:50%;height:2px"></div>
+        <div class="doc-card__thumb-line" style="background:#181928;width:70%"></div>
+        <div class="doc-card__thumb-line" style="background:#4caf82;width:35%;height:2px"></div>
+        <div class="doc-card__thumb-table"><span style="background:#c9a553"></span><span style="background:#181928"></span><span style="background:#4caf82"></span></div>
+      </div>
+      <div class="doc-card__badge badge-quant">Own Work</div>
+      <div class="doc-card__load"><span>Preview</span></div>
+      <div class="doc-card__info">
+        <div class="doc-card__title">Finn&rsquo;s Strategy</div>
+        <div class="doc-card__meta">Research Memo · May 2026</div>
+      </div>
+    </div>
+
+    <!-- Analyse Your Own -->
+    <div class="doc-card doc-card--add" onclick="triggerOwn()">
+      <div class="plus">+</div>
+      <div class="add-label">Analyse<br>Your Own</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Main -->
+<div class="main">
+  <nav class="sidebar">
+    <span class="sidebar__label">Dashboard</span>
+    <button class="sidebar__item active" data-panel="overview">
+      <svg class="sidebar__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+      Overview
+    </button>
+    <span class="sidebar__label">Analysis</span>
+    <button class="sidebar__item" data-panel="query">
+      <svg class="sidebar__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="7" cy="7" r="5"/><path d="M12 12l2.5 2.5" stroke-linecap="round"/></svg>
+      Query
+    </button>
+    <button class="sidebar__item" data-panel="analyze">
+      <svg class="sidebar__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 12l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      AI Analyze
+    </button>
+    <span class="sidebar__label">Data</span>
+    <button class="sidebar__item" data-panel="import">
+      <svg class="sidebar__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 2v8M5 7l3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h12" stroke-linecap="round"/></svg>
+      Import CSV
+    </button>
+  </nav>
+
+  <main class="content">
+    <!-- Overview -->
+    <section class="panel active" id="panel-overview">
+      <div><h1 class="panel-title">Overview</h1><p class="panel-sub">Your financial data at a glance.</p></div>
+      <div class="stats-row">
+        <div class="stat-box"><span class="stat-box__val" id="statTotal">—</span><span class="stat-box__label">Transactions</span></div>
+        <div class="stat-box"><span class="stat-box__val" id="statFrom">—</span><span class="stat-box__label">From</span></div>
+        <div class="stat-box"><span class="stat-box__val" id="statTo">—</span><span class="stat-box__label">To</span></div>
+      </div>
+      <div class="two-col">
+        <div class="card"><div class="card__title">Top Spending Categories</div><div class="bar-list" id="catBars"><div class="loading-row"><span class="spinner"></span>Loading…</div></div></div>
+        <div class="card"><div class="card__title">Monthly Net Cash Flow</div><div class="month-list" id="monthBars"><div class="loading-row"><span class="spinner"></span>Loading…</div></div></div>
+      </div>
+    </section>
+
+    <!-- Query -->
+    <section class="panel" id="panel-query">
+      <div><h1 class="panel-title">Query</h1><p class="panel-sub">Ask anything in plain English &mdash; Claude writes the SQL, DuckDB runs it.</p></div>
+      <form class="query-form" id="queryForm">
+        <input class="query-input" id="queryInput" type="text" placeholder="e.g. What did I spend on dining last month?" autocomplete="off" />
+        <button class="query-btn" type="submit" id="queryBtn">Run</button>
+      </form>
+      <div class="query-suggestions">
+        <div class="query-suggestions__label">Or try one of these</div>
+        <div class="query-chips" id="queryChips">
+          <button class="query-chip" type="button" data-q="What did I spend on dining out last month?"><span class="query-chip__num">01</span><span>What did I spend on dining out last month?</span></button>
+          <button class="query-chip" type="button" data-q="Show my top 5 spending categories this year ordered by total."><span class="query-chip__num">02</span><span>Show my top 5 spending categories this year ordered by total.</span></button>
+          <button class="query-chip" type="button" data-q="What is my monthly net cash flow for the last 12 months?"><span class="query-chip__num">03</span><span>What is my monthly net cash flow for the last 12 months?</span></button>
+          <button class="query-chip" type="button" data-q="Which merchants did I spend the most at, and how many transactions each?"><span class="query-chip__num">04</span><span>Which merchants did I spend the most at, and how many transactions each?</span></button>
+          <button class="query-chip" type="button" data-q="What proportion of my spending is recurring vs one-off?"><span class="query-chip__num">05</span><span>What proportion of my spending is recurring vs one-off?</span></button>
+          <button class="query-chip" type="button" data-q="Show transactions over £100 sorted by date descending."><span class="query-chip__num">06</span><span>Show transactions over £100 sorted by date descending.</span></button>
+          <button class="query-chip" type="button" data-q="Compare this month's spending to the same month last year, by category."><span class="query-chip__num">07</span><span>Compare this month&rsquo;s spending to the same month last year, by category.</span></button>
+        </div>
+      </div>
+      <div id="queryOutput"></div>
+    </section>
+
+    <!-- Analyze -->
+    <section class="panel" id="panel-analyze">
+      <div><h1 class="panel-title">AI Analyze</h1><p class="panel-sub">Claude runs the SQL, interprets the numbers, and walks you through where every figure came from.</p></div>
+      <form class="query-form" id="analyzeForm">
+        <input class="query-input" id="analyzeInput" type="text" placeholder="e.g. Show my spending trends by month" autocomplete="off" />
+        <button class="query-btn" type="submit" id="analyzeBtn">Analyze</button>
+      </form>
+      <div class="query-suggestions">
+        <div class="query-suggestions__label">Suggested analyses</div>
+        <div class="query-chips" id="analyzeChips">
+          <button class="query-chip" type="button" data-q="Analyse my month-over-month spending trends and flag any categories increasing more than 20%."><span class="query-chip__num">01</span><span>Analyse my month-over-month spending trends and flag categories increasing &gt;20%.</span></button>
+          <button class="query-chip" type="button" data-q="Identify the three most expensive categories and tell me which deserve a closer look."><span class="query-chip__num">02</span><span>Identify my three most expensive categories and which deserve a closer look.</span></button>
+          <button class="query-chip" type="button" data-q="Detect anomalous transactions or unusual spikes in my history."><span class="query-chip__num">03</span><span>Detect anomalous transactions or unusual spikes in my history.</span></button>
+          <button class="query-chip" type="button" data-q="Summarise my financial health: income vs spending, savings rate, and concentration of spending."><span class="query-chip__num">04</span><span>Summarise my financial health: income, spending, savings rate, concentration.</span></button>
+          <button class="query-chip" type="button" data-q="Build a cash-flow story for the year &mdash; when do I run hot, when do I run cold, and why?"><span class="query-chip__num">05</span><span>Build a cash-flow story for the year &mdash; when I run hot vs cold, and why.</span></button>
+          <button class="query-chip" type="button" data-q="Compare my discretionary vs essential spending and recommend two areas to tighten."><span class="query-chip__num">06</span><span>Compare discretionary vs essential spending and recommend two areas to tighten.</span></button>
+          <button class="query-chip" type="button" data-q="Forecast where my spending is likely to land next month based on recent trends."><span class="query-chip__num">07</span><span>Forecast where my spending is likely to land next month based on recent trends.</span></button>
+        </div>
+      </div>
+      <div id="analyzeOutput"></div>
+    </section>
+
+    <!-- Import -->
+    <section class="panel" id="panel-import">
+      <div><h1 class="panel-title">Import CSV</h1><p class="panel-sub">Drop a bank export — Claude will summarise what came in.</p></div>
+      <label class="drop-zone" id="dropZone">
+        <input type="file" id="fileInput" accept=".csv" />
+        <svg style="margin:0 auto .7rem;color:var(--text-3)" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3v12M8 10l4-4 4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17h16M4 21h16" stroke-linecap="round"/></svg>
+        <div class="drop-zone__label">Click or drag a file here</div>
+        <div class="drop-zone__sub">CSV · Monzo · Starling · Revolut · Chase · any standard bank export</div>
+      </label>
+      <div id="importOutput"></div>
+    </section>
+  </main>
+</div>
+
+<!-- Doc Preview Modal -->
+<div class="doc-modal" id="docModal">
+  <div class="doc-modal__backdrop" id="docModalBackdrop"></div>
+  <div class="doc-modal__panel">
+    <div class="doc-modal__toolbar">
+      <span class="doc-modal__title" id="docModalTitle">Document Preview</span>
+      <div class="doc-modal__actions">
+        <button class="doc-modal__load-btn" id="docModalLoadBtn">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M2 10h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Load Data into Analyser
+        </button>
+        <button class="doc-modal__close" id="docModalClose">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="doc-modal__body">
+      <div class="doc-modal__loading" id="docModalLoading"><span class="spinner"></span>Loading document…</div>
+      <iframe id="docFrame" class="doc-modal__frame" title="Document Preview" src="about:blank"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Docs config ───────────────────────────────────────────────
+const DOCS = [
+  { title: 'Berkshire Hathaway — 2024 Annual Letter to Shareholders (Warren Buffett)', src: '/static/docs/1-berkshire.html',  sample: 1 },
+  { title: 'JPMorgan Chase — 2024 CEO Letter to Shareholders (Jamie Dimon)',           src: '/static/docs/2-jpmorgan.html',   sample: 2 },
+  { title: 'BlackRock, Inc. — 2024 Annual Report Excerpt (Form 10-K)',                  src: '/static/docs/3-blackrock.html',  sample: 3 },
+  { title: 'Apple Inc. — Form 10-K, Fiscal Year 2024 (SEC Filing)',                     src: '/static/docs/4-apple-10k.html',  sample: 4 },
+  { title: 'Federal Reserve — FOMC Statement, May 2026',                                src: '/static/docs/5-fomc.html',       sample: 5 },
+  { title: "Finn's Strategy — Quantitative Research Memo, May 2026 (Own Work)",         src: '/static/docs/6-finn-strategy.html', sample: 3 },
+];
+
+// ── Nav ───────────────────────────────────────────────────────
+document.querySelectorAll('.sidebar__item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.sidebar__item').forEach(i => i.classList.toggle('active', i === item));
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === `panel-${item.dataset.panel}`));
+  });
+});
+
+// ── API helpers ───────────────────────────────────────────────
+async function api(method, path, body) {
+  const opts = { method, headers: { 'Content-Type': 'application/json' } };
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch(path, opts);
+  if (!res.ok) { const e = await res.json().catch(() => ({ detail: res.statusText })); throw new Error(e.detail || res.statusText); }
+  return res.json();
+}
+
+// ── Render helpers ────────────────────────────────────────────
+function renderTable(columns, rows) {
+  if (!rows.length) return '<div class="empty">No results returned</div>';
+  const th = columns.map(c => `<th>${c}</th>`).join('');
+  const body = rows.map(r => `<tr>${r.map(v => `<td>${v ?? ''}</td>`).join('')}</tr>`).join('');
+  return `<div class="results-table-wrap"><table><thead><tr>${th}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+function loading(msg='Working…') { return `<div class="loading-row"><span class="spinner"></span>${msg}</div>`; }
+function error(msg) { return `<div class="error-box">${msg}</div>`; }
+
+// ── Overview ──────────────────────────────────────────────────
+async function loadOverview() {
+  const st = document.getElementById('headerStatus');
+  try {
+    const d = await api('GET', '/api/summary');
+    document.getElementById('statTotal').textContent = d.total_transactions ?? '—';
+    document.getElementById('statFrom').textContent  = d.date_min ? d.date_min.slice(0,7) : '—';
+    document.getElementById('statTo').textContent    = d.date_max ? d.date_max.slice(0,7) : '—';
+    st.textContent = d.total_transactions ? `${d.total_transactions} transactions loaded` : 'No data — click a document to load sample data';
+
+    const catEl = document.getElementById('catBars');
+    const cats  = d.top_categories || [];
+    if (!cats.length) { catEl.innerHTML = '<div class="empty">No data loaded yet</div>'; }
+    else {
+      const max = Math.max(...cats.map(c => c.total));
+      catEl.innerHTML = cats.map(c => `<div class="bar-item"><div class="bar-item__label"><span>${c.category}</span><span>${c.total.toLocaleString('en-GB',{minimumFractionDigits:2})}</span></div><div class="bar-item__track"><div class="bar-item__fill" style="width:${(c.total/max*100).toFixed(1)}%"></div></div></div>`).join('');
+    }
+
+    const monthEl = document.getElementById('monthBars');
+    const months  = d.monthly_net || [];
+    if (!months.length) { monthEl.innerHTML = '<div class="empty">No data loaded yet</div>'; }
+    else {
+      const maxAbs = Math.max(...months.map(m => Math.abs(m.net)));
+      monthEl.innerHTML = months.map(m => {
+        const pos = m.net >= 0;
+        const pct = maxAbs ? (Math.abs(m.net)/maxAbs*100).toFixed(1) : 0;
+        const cls = pos ? 'positive' : 'negative';
+        const col = pos ? 'var(--green)' : 'var(--red)';
+        return `<div class="month-row"><span class="month-row__label">${m.month}</span><div class="month-row__bar"><div class="month-row__fill" style="width:${pct}%;background:${col}"></div></div><span class="month-row__val ${cls}">${pos?'+':''}${m.net.toFixed(0)}</span></div>`;
+      }).join('');
+    }
+  } catch(e) { st.textContent = 'Error loading data'; }
+}
+loadOverview();
+
+// ── Doc preview modal ─────────────────────────────────────────
+let activeDocIdx = null;
+const docModal   = document.getElementById('docModal');
+const docFrame   = document.getElementById('docFrame');
+const docLoading = document.getElementById('docModalLoading');
+const docTitle   = document.getElementById('docModalTitle');
+
+function openDoc(idx) {
+  const doc = DOCS[idx];
+  activeDocIdx = idx;
+  docTitle.textContent = doc.title;
+  docLoading.style.display = 'flex';
+  docFrame.style.opacity = '0';
+  docFrame.src = doc.src;
+  docModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDocModal() {
+  docModal.classList.remove('open');
+  document.body.style.overflow = '';
+  // Reset iframe after fade-out — guard prevents clobbering a rapid re-open
+  setTimeout(() => {
+    if (docModal.classList.contains('open')) return;
+    docFrame.src = 'about:blank';
+    docFrame.style.opacity = '0';
+    docLoading.style.display = 'flex';
+  }, 350);
+}
+
+document.getElementById('docModalBackdrop').addEventListener('click', closeDocModal);
+document.getElementById('docModalClose').addEventListener('click', closeDocModal);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDocModal(); });
+docFrame.addEventListener('load', () => {
+  // Only reveal content when the modal is actually open (ignore about:blank resets)
+  if (!docModal.classList.contains('open')) return;
+  docLoading.style.display = 'none';
+  docFrame.style.opacity = '1';
+});
+
+document.getElementById('docModalLoadBtn').addEventListener('click', async () => {
+  if (activeDocIdx === null) return;
+  const btn = document.getElementById('docModalLoadBtn');
+  btn.textContent = 'Loading…';
+  btn.disabled = true;
+  try {
+    const n = DOCS[activeDocIdx].sample;
+    await api('POST', `/api/load-sample/${n}`);
+    closeDocModal();
+    loadOverview();
+    // Switch to overview
+    document.querySelectorAll('.sidebar__item').forEach(i => i.classList.toggle('active', i.dataset.panel === 'overview'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-overview'));
+  } catch(e) { alert('Error loading sample: ' + e.message); }
+  finally { btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M2 10h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Load Data into Analyser'; btn.disabled = false; }
+});
+
+// ── Analyse Your Own ──────────────────────────────────────────
+function triggerOwn() {
+  document.querySelectorAll('.sidebar__item').forEach(i => i.classList.toggle('active', i.dataset.panel === 'import'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-import'));
+  setTimeout(() => document.getElementById('fileInput').click(), 100);
+}
+
+// ── Markdown renderer for Claude analysis output ──────────────
+function escHtml(t) {
+  return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function inlineMd(text) {
+  return escHtml(text)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,     '<em>$1</em>')
+    .replace(/`(.+?)`/g,       '<code class="analysis-code">$1</code>');
+}
+function renderAnalysis(text) {
+  return (text || '').split('\n').map(line => {
+    const t = line.trim();
+    if (!t) return '<div class="analysis-spacer"></div>';
+    if (t.startsWith('### ')) return `<div class="analysis-h3">${inlineMd(t.slice(4))}</div>`;
+    if (t.startsWith('## '))  return `<div class="analysis-h2">${inlineMd(t.slice(3))}</div>`;
+    if (t.startsWith('# '))   return `<div class="analysis-h2">${inlineMd(t.slice(2))}</div>`;
+    if (/^[-•*]\s/.test(t))   return `<div class="analysis-li">${inlineMd(t.replace(/^[-•*]\s+/,''))}</div>`;
+    if (/^\d+\.\s/.test(t))   return `<div class="analysis-li">${inlineMd(t.replace(/^\d+\.\s+/,''))}</div>`;
+    return `<div class="analysis-p">${inlineMd(t)}</div>`;
+  }).join('');
+}
+
+// ── Tutorial walk-through (chip-driven) ───────────────────────
+// When a user clicks a suggestion chip, we narrate the run:
+//  Step 1: Type the question into the input
+//  Step 2: Show Claude generating SQL (live)
+//  Step 3: Show DuckDB executing
+//  Step 4: Render the result table + statistical readout
+//  Step 5: Render Claude's narrative explanation
+
+function typewriterInto(el, text, perChar = 18) {
+  return new Promise(resolve => {
+    el.textContent = '';
+    let i = 0;
+    const tick = () => {
+      if (i >= text.length) { resolve(); return; }
+      el.textContent += text.charAt(i++);
+      setTimeout(tick, perChar);
+    };
+    tick();
+  });
+}
+
+function statReadoutHtml(columns, rows) {
+  // Build a small statistical summary of the result set
+  const rowCount = rows.length;
+  // Detect a numeric column for summary
+  let numCol = -1, numColName = '';
+  for (let c = 0; c < columns.length; c++) {
+    const sample = rows.slice(0, 5).map(r => r[c]).filter(v => v != null);
+    if (sample.length && sample.every(v => !isNaN(parseFloat(v)))) {
+      numCol = c; numColName = columns[c]; break;
+    }
+  }
+  let extras = '';
+  if (numCol >= 0 && rowCount > 0) {
+    const vals = rows.map(r => parseFloat(r[numCol])).filter(v => !isNaN(v));
+    const sum = vals.reduce((a, b) => a + b, 0);
+    const avg = sum / vals.length;
+    const max = Math.max(...vals);
+    const min = Math.min(...vals);
+    const fmt = v => v.toLocaleString(undefined, { maximumFractionDigits: 2 });
+    extras = `
+      <div><strong>${escHtml(numColName)}:</strong> Σ <code class="analysis-code">${fmt(sum)}</code> &middot; μ <code class="analysis-code">${fmt(avg)}</code> &middot; max <code class="analysis-code">${fmt(max)}</code> &middot; min <code class="analysis-code">${fmt(min)}</code></div>`;
+  }
+  return `
+    <div class="tutorial-explainer">
+      <span class="tutorial-explainer__label">Statistical readout</span>
+      <div><strong>Result set:</strong> ${rowCount} row${rowCount === 1 ? '' : 's'} &middot; ${columns.length} column${columns.length === 1 ? '' : 's'}</div>
+      ${extras}
+      <div style="margin-top:.35rem;color:var(--text-3);font-size:.75rem">Source: <code class="analysis-code">transactions</code> table in DuckDB, queried with the SQL above. Computation deterministic; no model reasoning involved up to this point.</div>
+    </div>`;
+}
+
+async function runTutorial({ inputId, outputId, btnId, endpoint, question, isAnalyze }) {
+  const input  = document.getElementById(inputId);
+  const output = document.getElementById(outputId);
+  const btn    = document.getElementById(btnId);
+  if (!input || !output || !btn) return;
+
+  // Scroll into view for visibility
+  output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  btn.disabled = true;
+
+  // Tutorial scaffold
+  output.innerHTML = `
+    <div class="tutorial-walkthrough" id="tw">
+      <div class="tutorial-step" data-tw="1">
+        <div class="tutorial-step__num">1</div>
+        <div class="tutorial-step__body">
+          <div class="tutorial-step__title">Your question</div>
+          <div class="tutorial-step__detail"><span class="tutorial-typing" id="twQ"></span></div>
+        </div>
+      </div>
+      <div class="tutorial-step" data-tw="2">
+        <div class="tutorial-step__num">2</div>
+        <div class="tutorial-step__body">
+          <div class="tutorial-step__title" id="twSqlTitle">Claude writes the DuckDB query</div>
+          <div class="tutorial-step__detail" id="twSql">
+            <div class="loading-row"><span class="spinner"></span>Generating SQL with prompt-cached schema context…</div>
+          </div>
+        </div>
+      </div>
+      <div class="tutorial-step" data-tw="3">
+        <div class="tutorial-step__num">3</div>
+        <div class="tutorial-step__body">
+          <div class="tutorial-step__title" id="twRunTitle">DuckDB executes locally</div>
+          <div class="tutorial-step__detail" id="twRun"></div>
+        </div>
+      </div>
+      ${isAnalyze ? `
+      <div class="tutorial-step" data-tw="4">
+        <div class="tutorial-step__num">4</div>
+        <div class="tutorial-step__body">
+          <div class="tutorial-step__title" id="twAnaTitle">Claude interprets the numbers</div>
+          <div class="tutorial-step__detail" id="twAna"></div>
+        </div>
+      </div>` : ''}
+    </div>`;
+
+  const steps = output.querySelectorAll('.tutorial-step');
+  const reveal = i => steps[i] && steps[i].classList.add('tutorial-step--visible');
+
+  // Step 1: type the question
+  reveal(0);
+  input.value = question;
+  await typewriterInto(document.getElementById('twQ'), question, 14);
+  await new Promise(r => setTimeout(r, 350));
+
+  // Step 2: SQL generation (and execution via /api/analyze or /api/query)
+  reveal(1);
+  let d;
+  try {
+    d = await api('POST', endpoint, { question });
+  } catch (err) {
+    document.getElementById('twSql').innerHTML = error(err.message);
+    btn.disabled = false;
+    return;
+  }
+  document.getElementById('twSqlTitle').classList.add('tutorial-step__title--done');
+  document.getElementById('twSql').innerHTML = `
+    <div>Claude returned a DuckDB query built from the live <code>transactions</code> schema:</div>
+    <div class="sql-block" style="margin-top:.5rem">${escHtml(d.sql)}</div>`;
+  await new Promise(r => setTimeout(r, 250));
+
+  // Step 3: execution + statistical readout
+  reveal(2);
+  document.getElementById('twRunTitle').classList.add('tutorial-step__title--done');
+  document.getElementById('twRun').innerHTML = `
+    ${renderTable(d.columns, d.rows)}
+    ${statReadoutHtml(d.columns, d.rows)}`;
+  await new Promise(r => setTimeout(r, 250));
+
+  // Step 4: narrative analysis (analyze only)
+  if (isAnalyze) {
+    reveal(3);
+    document.getElementById('twAnaTitle').classList.add('tutorial-step__title--done');
+    document.getElementById('twAna').innerHTML = `
+      <div style="margin-bottom:.5rem;color:var(--text-3);font-size:.78rem">Below: plain-English interpretation grounded in the figures above. The model is constrained to cite the actual numbers — it cannot invent data.</div>
+      <div class="analysis-out">${renderAnalysis(d.analysis)}</div>`;
+  }
+
+  btn.disabled = false;
+}
+
+// Wire up chip clicks
+function wireChips(containerId, opts) {
+  document.querySelectorAll(`#${containerId} .query-chip`).forEach(chip => {
+    chip.addEventListener('click', () => {
+      const q = chip.dataset.q;
+      runTutorial({ ...opts, question: q });
+    });
+  });
+}
+wireChips('queryChips',   { inputId: 'queryInput',   outputId: 'queryOutput',   btnId: 'queryBtn',   endpoint: '/api/query',   isAnalyze: false });
+wireChips('analyzeChips', { inputId: 'analyzeInput', outputId: 'analyzeOutput', btnId: 'analyzeBtn', endpoint: '/api/analyze', isAnalyze: true  });
+
+// ── Query (typed form submit) ─────────────────────────────────
+document.getElementById('queryForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const q = document.getElementById('queryInput').value.trim();
+  if (!q) return;
+  runTutorial({ inputId: 'queryInput', outputId: 'queryOutput', btnId: 'queryBtn', endpoint: '/api/query', question: q, isAnalyze: false });
+});
+
+// ── Analyze (typed form submit) ───────────────────────────────
+document.getElementById('analyzeForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const q = document.getElementById('analyzeInput').value.trim();
+  if (!q) return;
+  runTutorial({ inputId: 'analyzeInput', outputId: 'analyzeOutput', btnId: 'analyzeBtn', endpoint: '/api/analyze', question: q, isAnalyze: true });
+});
+
+// ── Import ────────────────────────────────────────────────────
+const dropZone  = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); if (e.dataTransfer.files[0]) uploadFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) uploadFile(fileInput.files[0]); });
+
+async function uploadFile(file) {
+  const out = document.getElementById('importOutput');
+  out.innerHTML = loading(`Importing ${file.name}…`);
+  const form = new FormData();
+  form.append('file', file);
+  try {
+    const res = await fetch('/api/import', { method: 'POST', body: form });
+    if (!res.ok) { const e = await res.json().catch(() => ({ detail: res.statusText })); throw new Error(e.detail); }
+    const d = await res.json();
+    out.innerHTML = `<div class="import-narrative">${d.narrative}</div><div class="stat-box" style="max-width:280px"><span class="stat-box__val">${d.stats.rows}</span><span class="stat-box__label">Rows imported · ${d.stats.date_min} to ${d.stats.date_max}</span></div>`;
+    loadOverview();
+  } catch(e) { out.innerHTML = error(e.message); }
+}
+
+// ── postMessage height reporter (for portfolio iframe embed) ──
+function reportHeight() {
+  const h = document.body.scrollHeight;
+  if (window.parent !== window) {
+    window.parent.postMessage({ type: 'financeHeight', height: h }, '*');
+  }
+}
+// Fire on load and whenever the body grows/shrinks
+reportHeight();
+let _roTimer = null;
+new ResizeObserver(() => {
+  clearTimeout(_roTimer);
+  _roTimer = setTimeout(reportHeight, 60);
+}).observe(document.body);
+</script>
+</body>
+</html>
