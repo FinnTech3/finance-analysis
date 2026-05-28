@@ -502,12 +502,14 @@ async function api(method, path, body) {
 // ── Render helpers ────────────────────────────────────────────
 function renderTable(columns, rows) {
   if (!rows.length) return '<div class="empty">No results returned</div>';
-  const th = columns.map(c => `<th>${c}</th>`).join('');
-  const body = rows.map(r => `<tr>${r.map(v => `<td>${v ?? ''}</td>`).join('')}</tr>`).join('');
+  const th = columns.map(c => `<th>${esc(c)}</th>`).join('');
+  const body = rows.map(r => `<tr>${r.map(v => `<td>${esc(v ?? '')}</td>`).join('')}</tr>`).join('');
   return `<div class="results-table-wrap"><table><thead><tr>${th}</tr></thead><tbody>${body}</tbody></table></div>`;
 }
-function loading(msg='Working…') { return `<div class="loading-row"><span class="spinner"></span>${msg}</div>`; }
-function error(msg) { return `<div class="error-box">${msg}</div>`; }
+function loading(msg='Working…') { return `<div class="loading-row"><span class="spinner"></span>${esc(msg)}</div>`; }
+function error(msg) { return `<div class="error-box">${esc(msg)}</div>`; }
+// Escape any server- or data-derived string before it touches innerHTML.
+function esc(t) { return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 
 // ── Overview ──────────────────────────────────────────────────
 async function loadOverview() {
@@ -524,7 +526,7 @@ async function loadOverview() {
     if (!cats.length) { catEl.innerHTML = '<div class="empty">No data loaded yet</div>'; }
     else {
       const max = Math.max(...cats.map(c => c.total));
-      catEl.innerHTML = cats.map(c => `<div class="bar-item"><div class="bar-item__label"><span>${c.category}</span><span>${c.total.toLocaleString('en-GB',{minimumFractionDigits:2})}</span></div><div class="bar-item__track"><div class="bar-item__fill" style="width:${(c.total/max*100).toFixed(1)}%"></div></div></div>`).join('');
+      catEl.innerHTML = cats.map(c => `<div class="bar-item"><div class="bar-item__label"><span>${esc(c.category)}</span><span>${c.total.toLocaleString('en-GB',{minimumFractionDigits:2})}</span></div><div class="bar-item__track"><div class="bar-item__fill" style="width:${(c.total/max*100).toFixed(1)}%"></div></div></div>`).join('');
     }
 
     const monthEl = document.getElementById('monthBars');
@@ -813,14 +815,14 @@ fileInput.addEventListener('change', () => { if (fileInput.files[0]) uploadFile(
 
 async function uploadFile(file) {
   const out = document.getElementById('importOutput');
-  out.innerHTML = loading(`Importing ${file.name}…`);
+  out.innerHTML = loading(`Importing ${esc(file.name)}…`);
   const form = new FormData();
   form.append('file', file);
   try {
     const res = await fetch('/api/import', { method: 'POST', body: form });
     if (!res.ok) { const e = await res.json().catch(() => ({ detail: res.statusText })); throw new Error(e.detail); }
     const d = await res.json();
-    out.innerHTML = `<div class="import-narrative">${d.narrative}</div><div class="stat-box" style="max-width:280px"><span class="stat-box__val">${d.stats.rows}</span><span class="stat-box__label">Rows imported · ${d.stats.date_min} to ${d.stats.date_max}</span></div>`;
+    out.innerHTML = `<div class="import-narrative">${esc(d.narrative)}</div><div class="stat-box" style="max-width:280px"><span class="stat-box__val">${esc(d.stats.rows)}</span><span class="stat-box__label">Rows imported · ${esc(d.stats.date_min)} to ${esc(d.stats.date_max)}</span></div>`;
     loadOverview();
   } catch(e) { out.innerHTML = error(e.message); }
 }
