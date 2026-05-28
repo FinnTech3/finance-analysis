@@ -186,6 +186,9 @@
     .drop-zone input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; }
     .drop-zone__label { font-size: .8rem; color: var(--text-2); }
     .drop-zone__sub { font-size: .65rem; color: var(--text-3); margin-top: .25rem; }
+    .demo-notice { display: flex; gap: .6rem; align-items: flex-start; margin: 0 0 1.1rem; padding: .7rem .9rem; border: 1px solid var(--border-2); border-left: 2px solid var(--gold); border-radius: 2px; background: var(--gold-dim); font-size: .72rem; line-height: 1.55; color: var(--text-2); }
+    .demo-notice svg { flex-shrink: 0; margin-top: .12rem; color: var(--gold); }
+    .demo-notice strong { color: var(--text); font-weight: 600; }
     .import-narrative { background: var(--surface); border: 1px solid var(--border-2); border-left: 3px solid var(--green); padding: 1.3rem; font-size: .82rem; color: var(--text-2); line-height: 1.8; }
 
     /* ── Utility ── */
@@ -437,6 +440,10 @@
     <!-- Import -->
     <section class="panel" id="panel-import">
       <div><h1 class="panel-title">Import CSV</h1><p class="panel-sub">Drop a bank export — Claude will summarise what came in.</p></div>
+      <div class="demo-notice" role="note">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 1.5 2 4v3.5c0 3.5 2.5 5.7 6 7 3.5-1.3 6-3.5 6-7V4L8 1.5Z" stroke-linejoin="round"/><path d="M8 6v3.2M8 11h.01" stroke-linecap="round"/></svg>
+        <span><strong>Shared public demo.</strong> Best explored with the sample bank statements — please don&rsquo;t upload real financial data, as this demo uses a single shared workspace.</span>
+      </div>
       <label class="drop-zone" id="dropZone">
         <input type="file" id="fileInput" accept=".csv" />
         <svg style="margin:0 auto .7rem;color:var(--text-3)" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3v12M8 10l4-4 4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17h16M4 21h16" stroke-linecap="round"/></svg>
