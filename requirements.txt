@@ -1,7 +1,10 @@
-anthropic>=0.40.0
-duckdb>=1.1.0
-rich>=13.0.0
-python-dotenv>=1.0.0
-fastapi>=0.115.0
-uvicorn>=0.32.0
-python-multipart>=0.0.12
+# Pinned with compatible-release (~=) operators: locks the minor version so a
+# rebuild can never silently pull a breaking or compromised new release, while
+# still allowing patch-level security fixes. Bump deliberately when updating.
+anthropic~=0.102.0
+duckdb~=1.5.2
+rich~=15.0.0
+python-dotenv~=1.2.2
+fastapi~=0.136.1
+uvicorn~=0.47.0
+python-multipart~=0.0.28
